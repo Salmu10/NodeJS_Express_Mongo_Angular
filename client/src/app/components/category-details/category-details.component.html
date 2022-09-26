@@ -1,0 +1,27 @@
+<div>
+  <!-- <div *ngIf="currentCategory.slug"> -->
+  <div>
+      <h4>Category</h4>
+      <!-- <div>
+          <label><strong>ID:</strong></label> {{ currentCategory.slug }}
+      </div> -->
+      <div>
+        <label><strong>Category id: </strong></label> {{ currentCategory.id_cat }}
+      </div>
+      <div>
+          <label><strong>Category name: </strong></label> {{ currentCategory.category_name }}
+      </div>
+      <div>
+          <label><strong>Category image: </strong></label> {{ currentCategory.image }}
+      </div>
+      <!-- <a class="badge badge-warning" routerLink="/category/update/{{ currentCategory.slug }}">
+          Edit
+      </a>
+      <a class="badge badge-danger mr-2" (click)="deleteCategory(currentCategory.slug)">Delete</a> -->
+  </div>
+
+  <div *ngIf="currentCategory.category_name == ''">
+      <br />
+      <p>Please click on a category...</p>
+  </div>
+</div>
