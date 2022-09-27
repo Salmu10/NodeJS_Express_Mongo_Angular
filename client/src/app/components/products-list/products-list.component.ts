@@ -20,7 +20,7 @@ export class ProductsListComponent implements OnInit {
     name: "",
     price: 0,
     description: "",
-    category: "",
+    id_category: "",
     owner: ""
   };
 

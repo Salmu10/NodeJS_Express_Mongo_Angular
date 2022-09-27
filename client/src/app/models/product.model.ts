@@ -3,6 +3,6 @@ export class Product {
   name?: String;
   price?: Number;
   description?: String;
-  category?: String;
+  id_category?: String;
   owner?: String;
 }

@@ -17,7 +17,7 @@ export class AddProductComponent implements OnInit {
     name: '',
     price: 0,
     description: '',
-    category: '',
+    id_category: '',
     owner: ''
   };
   submitted = false;

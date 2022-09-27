@@ -1,4 +1,5 @@
 const Product = require("../models/product.model.js");
+const Category = require("../models/category.model.js");
 
 // Create and Save a new Product
 exports.create_product = async (req, res) => {
@@ -7,10 +8,11 @@ exports.create_product = async (req, res) => {
         name: req.body.name || null,
         price: req.body.price || 0,
         description: req.body.description || null,
-        category: req.body.category || null,
+        id_category: req.body.id_category || null,
         owner: req.body.owner || null,
     };
     const product = new Product(product_data);
+    const category = await Category.updateOne({slug: product.id_category}, {$push: {products: product._id}})
     const new_product = await product.save();
     res.json(new_product);
   } catch (error) {
@@ -57,7 +59,7 @@ exports.update_product = async (req, res) => {
       old_product.name = req.body.name || old_product.name;
       old_product.price = req.body.price || old_product.price;
       old_product.description = req.body.description || old_product.description;
-      old_product.category = req.body.owner || old_product.category;
+      old_product.id_category = req.body.owner || old_product.id_category;
       old_product.owner = req.body.owner || old_product.owner;
       const update = await old_product.save();
 

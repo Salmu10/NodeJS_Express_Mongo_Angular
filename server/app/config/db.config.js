@@ -1,5 +1,5 @@
 module.exports = {
-  url: "mongodb://localhost:27017/wallapop_db"
+  url: "mongodb://localhost:27017/wallapop_salva" //Cambiar
 };
 
 const mongoose = require('mongoose');

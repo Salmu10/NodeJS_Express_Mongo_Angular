@@ -41,6 +41,20 @@ exports.findOne_category = async (req, res) => {
   }
 };
 
+/* OBTENER PRODUCTOS DE UNA CATEGORIA */
+exports.find_prod_category = async (req, res) => {
+  try {
+    let category = await Category.findOne({ slug: req.params.id }).populate("products");
+    if (!category) {
+      res.status(404).json({ msg: "No existe la categoria" });
+    }
+    res.json(category);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Hubo un error");
+  }
+};
+
 // // Update a Category by the id in the request
 exports.update_category = async (req, res) => {
   try {

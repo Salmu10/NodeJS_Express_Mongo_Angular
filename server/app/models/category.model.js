@@ -19,7 +19,8 @@ const category_schema = mongoose.Schema({
     image: {
         type: String,
         required: true
-    }
+    },
+    products: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
 });
 
 category_schema.plugin(uniqueValidator, { msg: "already taken" });
