@@ -14,7 +14,7 @@ exports.create_product = async (req, res) => {
     const product = new Product(product_data);
     const category = await Category.updateOne({slug: product.id_category}, {$push: {products: product._id}})
     const new_product = await product.save();
-    res.json(new_product);
+    res.json(new_product.toJSONFor());
   } catch (error) {
     res.status(500).send({message: error.message || "Some error occurred while creating the Product."});
   }
@@ -67,7 +67,7 @@ exports.update_product = async (req, res) => {
       res.send({ message: "Product was updated successfully." });
   } catch (error) {
       if (error.kind === 'ObjectId') {res.status(404).send({message: `Product not found!`}); }
-      else {res.status(500).send({message: "Error updating Product with id=" + id});}
+      else {res.status(500).send({message: "Error updating the Product"});}
   }
 }
 
