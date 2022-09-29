@@ -3,15 +3,12 @@
     <div *ngIf="!product">No product</div>
     <div *ngIf="product">
         <figure class="snip1423">
-            <figcaption>
-                <h3>{{product.name}}</h3>
-                <p>{{product.description}}</p>
-                <div class="price">
-                    {{product.price}}€
-                </div>
-                <p>{{product.owner}}</p>
-            </figcaption><i class="ion-android-cart"></i>
-            <a href="#"></a>
+            <h3>{{product.name}}</h3>
+            <p>{{product.description}}</p>
+            <div class="price">
+                {{product.price}}€
+            </div>
+            <p>{{product.owner}}</p>
         </figure>
     </div>
 </div>

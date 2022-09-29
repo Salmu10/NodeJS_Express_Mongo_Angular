@@ -4,11 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
-import { ListCategoryComponent } from "./list-category/list-category.component";
+import { CategoriesListComponent } from "./categories-list/categories-list.component";
 import { ProductsListComponent } from './products-list/products-list.component';
-import { CardProductsComponent } from './card-products/card-products.component';
-import { CarouselComponent } from './carousel/carousel.component';
-import { CarouselItemsComponent } from './carousel-items/carousel-items.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 
 
@@ -21,18 +19,15 @@ import { CarouselItemsComponent } from './carousel-items/carousel-items.componen
         RouterModule
     ],
     declarations: [
-        ListCategoryComponent,
+        CategoriesListComponent,
         ProductsListComponent,
-        CardProductsComponent,
-        CarouselComponent,
-        CarouselItemsComponent,
+        ProductDetailsComponent,
     ],
     exports: [
-        ListCategoryComponent,
+        CategoriesListComponent,
         ProductsListComponent,
-        CardProductsComponent,
-        CarouselComponent,
-        CarouselItemsComponent
+        ProductDetailsComponent,
     ],
 })
+
 export class SharedModule { }

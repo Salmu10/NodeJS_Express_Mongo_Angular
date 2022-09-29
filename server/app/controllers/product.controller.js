@@ -35,13 +35,13 @@ exports.findOne_product = async (req, res) => {
       const id = req.params.id
       const product = await Product.findOne({ slug: id });
       if (!product) {
-          res.status(404).json(FormatError("Product not found", res.statusCode));
+        res.status(404).send({message: `Product not found!`});
       } else {
-          res.json(product);
+        res.json(product);
       };
   } catch (error) {
-      if (error.kind === 'ObjectId') { res.status(404).json(FormatError("Product not found", res.statusCode)); }
-      else { res.status(500).json(FormatError("An error has ocurred", res.statusCode)); }
+      if (error.kind === 'ObjectId') {res.status(404).send({message: `Product not found!`}); }
+      else {res.status(500).send({message: "An error has ocurred"});}
   }
 };
 

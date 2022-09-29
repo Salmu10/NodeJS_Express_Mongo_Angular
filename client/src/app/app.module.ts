@@ -8,6 +8,9 @@ import { AppComponent } from './app.component';
 //Form Reactive
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { HeaderComponent } from './shared/layout/index';
+import { FooterComponent } from './shared/layout/index';
+
 // Toastr
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,6 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService, Category } from '../../core'
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-categories-list',
@@ -10,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 
 export class CategoriesListComponent implements OnInit {
 
-  category?: Category[];
+  categories?: Category[];
 
   constructor(private CategoryService: CategoryService) { }
 
@@ -20,7 +19,7 @@ export class CategoriesListComponent implements OnInit {
 
   showCategorys() {
     this.CategoryService.all_categories().subscribe((data) => {
-      this.category = data;
+      this.categories = data;
     })
   }
 

@@ -32,27 +32,13 @@ exports.findOne_category = async (req, res) => {
       const id = req.params.id
       const category = await Category.findOne({ slug: id }).populate(products);
       if (!category) {
-          res.status(404).json(FormatError("Category not found", res.statusCode));
+          res.status(404).send({message: `Category not found!`});
       } else {
           res.json(category);
       };
   } catch (error) {
-      if (error.kind === 'ObjectId') { res.status(404).json(FormatError("category not found", res.statusCode)); }
-      else { res.status(500).json(FormatError("An error has ocurred", res.statusCode)); }
-  }
-};
-
-/* OBTENER PRODUCTOS DE UNA CATEGORIA */
-exports.find_prod_category = async (req, res) => {
-  try {
-    let category = await Category.findOne({ slug: req.params.id }).populate(products);
-    if (!category) {
-      res.status(404).json({ msg: "No existe la categoria" });
-    }
-    res.json(category);
-  } catch (error) {
-    console.log(error);
-    res.status(500).send("Hubo un error");
+      if (error.kind === 'ObjectId') {res.status(404).send({message: `Category not found!`}); }
+      else {res.status(500).send({message: "An error has ocurred"});}
   }
 };
 
@@ -77,7 +63,7 @@ exports.update_category = async (req, res) => {
       res.send({ message: "Category was updated successfully." });
   } catch (error) {
       if (error.kind === 'ObjectId') {res.status(404).send({message: `Category not found!`}); }
-      else {res.status(500).send({message: "Error updating Category with id=" + id});}
+      else {res.status(500).send({message: "Error updating the Category"});}
   }
 }
 
