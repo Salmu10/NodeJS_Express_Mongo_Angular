@@ -1,0 +1,4 @@
+<div *ngIf="products$?.length == 0">No products</div>
+<div *ngIf="products$" class="container">
+    <app-product-details class="item" *ngFor="let product of products$" [product]="product"></app-product-details>
+</div>

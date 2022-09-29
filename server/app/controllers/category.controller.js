@@ -7,6 +7,7 @@ exports.create_category = async (req, res) => {
       id_cat: req.body.id_cat || null,
       category_name: req.body.category_name || null,
       image: req.body.image || null,
+      products: []
     };
     const category = new Category(category_data);
     const new_category = await category.save();
@@ -29,7 +30,7 @@ exports.findAll_category = async (req, res) => {
 exports.findOne_category = async (req, res) => {
   try {
       const id = req.params.id
-      const category = await Category.findOne({ slug: id });
+      const category = await Category.findOne({ slug: id }).populate(products);
       if (!category) {
           res.status(404).json(FormatError("Category not found", res.statusCode));
       } else {
@@ -44,7 +45,7 @@ exports.findOne_category = async (req, res) => {
 /* OBTENER PRODUCTOS DE UNA CATEGORIA */
 exports.find_prod_category = async (req, res) => {
   try {
-    let category = await Category.findOne({ slug: req.params.id }).populate("products");
+    let category = await Category.findOne({ slug: req.params.id }).populate(products);
     if (!category) {
       res.status(404).json({ msg: "No existe la categoria" });
     }
@@ -69,6 +70,7 @@ exports.update_category = async (req, res) => {
       old_category.id_cat = req.body.id_cat || old_category.id_cat;
       old_category.category_name = req.body.category_name || old_category.category_name;
       old_category.image = req.body.image || old_category.image;
+      old_category.products = req.body.products || old_category.products;
       const category = await old_category.save();
 
       if (!category) {res.status(404).send({message: `Cannot update Category with id=${id}. Maybe Category was not found!`}); }
