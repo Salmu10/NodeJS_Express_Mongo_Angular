@@ -20,8 +20,9 @@ exports.create_category = async (req, res) => {
 // Retrieve all Category from the database.
 exports.findAll_category = async (req, res) => {
   try {
-    const category = await Category.find();
-    res.json(category);
+    const categories = await Category.find().populate('products');
+    res.json(categories.map(category => category.toJSONFor()));
+    // res.json(categories);
   } catch (error) {
     res.status(400).send({ message: "Some error occurred while retrieving categorys." });
   }
@@ -30,13 +31,14 @@ exports.findAll_category = async (req, res) => {
 exports.findOne_category = async (req, res) => {
   try {
       const id = req.params.id
-      const category = await Category.findOne({ slug: id }).populate(products);
+      const category = await Category.findOne({ slug: id }).populate('products');
       if (!category) {
           res.status(404).send({message: `Category not found!`});
       } else {
           res.json(category);
       };
   } catch (error) {
+    console.log(error);
       if (error.kind === 'ObjectId') {res.status(404).send({message: `Category not found!`}); }
       else {res.status(500).send({message: "An error has ocurred"});}
   }

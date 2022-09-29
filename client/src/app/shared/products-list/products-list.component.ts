@@ -10,40 +10,38 @@ import { ActivatedRoute } from '@angular/router';
 
 export class ProductsListComponent implements OnInit {
 
-  products$?: Product[];
-  id_category: String = "";
-  categorys?: Category[];
+  listProducts: Product[] = [];
+  listCategories: Category[] = [];
+  slug_Category: String = "";
 
-  constructor(private ProductService: ProductService, private CategoryService: CategoryService, private ActivatedRoute: ActivatedRoute) { }
-
+  constructor(
+    private ProductService: ProductService, 
+    private CategoryService: CategoryService, 
+    private ActivatedRoute: ActivatedRoute
+  ) {
+  }
+  
   ngOnInit(): void {
-    this.id_category = this.ActivatedRoute.snapshot.paramMap.get('slug') || "";
-    this.get_product();
+    this.slug_Category = this.ActivatedRoute.snapshot.paramMap.get('slug') || "";
+    this.get_products();
   }
 
-  get_product(): void {
-    this.ProductService.products = [];
-    if (this.ProductService.products.length == 0) {
-      if (this.id_category !== "") {
-        this.CategoryService.get_category(this.id_category).subscribe({
-          next: data => {
-            this.ProductService.products = data.products
-          },
-          error: e => {
-            console.error(e)
-          }
-        });
-      } else {
-        this.ProductService.all_products().subscribe({
-          next: data => this.ProductService.products = data,
-          error: e => console.error(e)
-        });
-      }
+  get_products(): void {
+    if (this.slug_Category !== "") {
+      this.CategoryService.get_category(this.slug_Category).subscribe({
+        next: data => {
+          this.listProducts = data.products;
+        },
+        error: e => {
+          console.error(e)
+        }
+      });
+    } else {
+      this.ProductService.all_products().subscribe({
+        next: data => this.listProducts = data,
+        error: e => console.error(e)
+      });
     }
-    this.ProductService.products$.subscribe({
-      next: data => this.products$ = data,
-      error: e => console.error(e)
-    });
   }
 
 }

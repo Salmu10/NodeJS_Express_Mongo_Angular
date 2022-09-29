@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { Category } from '../models/category.model';
 
 const URL = 'http://localhost:8080/api/categories';
-const carouselUrl = 'http://localhost:8050/api/carousel/category'
 
 @Injectable({
   providedIn: 'root'
@@ -36,10 +35,6 @@ export class CategoryService {
   
   delete_all_categories(): Observable<Category[]> {
     return this.http.delete<Category[]>(`${URL}`);
-  }
-
-  getCarousel(): Observable<Category[]> {
-    return this.http.get<Category[]>(carouselUrl);
   }
 
 }
