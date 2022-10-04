@@ -25,7 +25,7 @@ export class CarouselComponent implements OnInit {
 
   autoSlideImages(): void {
     setInterval(()=>{
-      this.onNextClick();
+      this.Next();
     }, this.slideInterval);
   }
 
@@ -33,7 +33,7 @@ export class CarouselComponent implements OnInit {
     this.selectIndex = index;
   }
 
-  onPrevClick(): void {
+  Prev(): void {
     if (this.selectIndex === 0) {
       this.selectIndex = this.category.length - 1;
     } else {
@@ -41,7 +41,7 @@ export class CarouselComponent implements OnInit {
     }
   }
 
-  onNextClick(): void {
+  Next(): void {
     if (this.selectIndex === this.category.length - 1) {
       this.selectIndex = 0;
     } else {
