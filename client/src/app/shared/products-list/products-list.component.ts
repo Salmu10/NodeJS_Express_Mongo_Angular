@@ -29,12 +29,8 @@ export class ProductsListComponent implements OnInit {
   get_products(): void {
     if (this.slug_Category !== "") {
       this.CategoryService.get_category(this.slug_Category).subscribe({
-        next: data => {
-          this.listProducts = data.products;
-        },
-        error: e => {
-          console.error(e)
-        }
+        next: data => this.listProducts = data.products,
+        error: e => console.error(e)
       });
     } else {
       this.ProductService.all_products().subscribe({

@@ -46,4 +46,12 @@ category_schema.methods.toJSONFor = function(){
     };
 };
 
+category_schema.methods.toJSONCarousel = function(){
+    return {
+        slug: this.slug,
+        image: this.image,
+        category_name: this.category_name
+    };
+};
+
 module.exports = mongoose.model('Category', category_schema);

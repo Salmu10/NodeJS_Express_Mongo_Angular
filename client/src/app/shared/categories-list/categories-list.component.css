@@ -3,3 +3,10 @@
   max-width: 750px;
   margin: auto;
 }
+
+.card {
+  width: 18rem;
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 20px;
+}

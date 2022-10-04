@@ -7,8 +7,8 @@ import { RouterModule } from '@angular/router';
 import { CategoriesListComponent } from "./categories-list/categories-list.component";
 import { ProductsListComponent } from './products-list/products-list.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-
-
+import { CarouselComponent } from './carousel/carousel.component';
+import { CarouselItemsComponent } from './carousel-items/carousel-items.component';
 
 @NgModule({
     imports: [
@@ -20,13 +20,17 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     ],
     declarations: [
         CategoriesListComponent,
+        CarouselItemsComponent,
+        CarouselComponent,
         ProductsListComponent,
-        ProductDetailsComponent,
+        ProductDetailsComponent
     ],
     exports: [
         CategoriesListComponent,
+        CarouselItemsComponent,
+        CarouselComponent,
         ProductsListComponent,
-        ProductDetailsComponent,
+        ProductDetailsComponent
     ],
 })
 
