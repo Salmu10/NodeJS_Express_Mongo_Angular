@@ -20,8 +20,6 @@ export class CarouselItemsComponent implements OnInit {
 
   carousel_categorys() {
     this.CarouselService.getCarousel().subscribe((data) => {
-      console.log(data);
-      
       this.items_carousel = data;
     })
   }

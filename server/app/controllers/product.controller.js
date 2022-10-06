@@ -23,8 +23,18 @@ exports.create_product = async (req, res) => {
 // Retrieve all Product from the database.
 exports.findAll_product = async (req, res) => {
   try {
-    const product = await Product.find();
-    res.json(product);
+    let query = {};
+    let transUndefined = (varQuery, otherResult) => {
+      return varQuery != "undefined" && varQuery ? varQuery : otherResult;
+    };
+    let limit = transUndefined(req.query.limit, 2);
+    let offset = transUndefined(req.query.offset, 0);
+    const products = await Product.find(query).sort("name").limit(Number(limit)).skip(0);
+    const product_count = await Product.find(query).countDocuments();
+    if (!products) {
+      res.status(404).json({ msg: "No existe el product" });
+    }
+    return res.json({products: products.map(product => product.toJSONFor()), product_count: product_count});
   } catch (error) {
     res.status(400).send({ message: "Some error occurred while retrieving products." });
   }

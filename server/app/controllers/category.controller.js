@@ -20,7 +20,8 @@ exports.create_category = async (req, res) => {
 // Retrieve all Category from the database.
 exports.findAll_category = async (req, res) => {
   try {
-    const categories = await Category.find().populate('products');
+    const { offset, limit } = req.query;
+    const categories = await Category.find({}, {}, { skip: Number(offset), limit: Number(limit) }).populate('products');
     res.json(categories.map(category => category.toJSONFor()));
     // res.json(categories);
   } catch (error) {
