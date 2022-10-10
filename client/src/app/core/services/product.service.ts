@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Product } from '../models/product.model';
+import { Product, Filters } from '../models';
 import { ApiService } from './api.service';
 
 const URL = 'http://localhost:8080/api/products';
@@ -14,9 +14,10 @@ export class ProductService {
   
   constructor(private http: HttpClient,  private apiService: ApiService) { }
 
-  get_products(params: any): Observable<{products: Product[], product_count: number}>{
-  // get_products(params: any): Observable<Product[]> {
-    // new HttpParams({fromObject:params}));
+  get_products(filters: Filters): Observable<{products: Product[], product_count: number}>{
+    let params = {};
+    params = filters;
+    console.log(filters);
     return this.apiService.get('products', new HttpParams({fromObject:params}));
   }
 

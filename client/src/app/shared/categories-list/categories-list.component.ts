@@ -36,10 +36,8 @@ export class CategoriesListComponent implements OnInit {
 
   getCategories() {
     const params = this.getRequestParams(this.offset, 3);
-
     this.CategoryService.get_categories(params).subscribe(
       (data) => {
-        console.log(data);
         this.categories = this.categories.concat(data);
         this.offset = this.offset + 3;
       },

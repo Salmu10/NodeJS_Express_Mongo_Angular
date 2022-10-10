@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductService, Product, CategoryService, Category } from '../../core'
+import { Component, OnInit, Input } from '@angular/core';
+import { ProductService, Product, Filters, CategoryService, Category } from '../../core'
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -13,11 +13,22 @@ export class ProductsListComponent implements OnInit {
   listProducts: Product[] = [];
   listCategories: Category[] = [];
   slug_Category: String = "";
+  routeFilters: string = "";
 
   offset = 0;
-  limit: number = 2;
+  limit: number = 3;
   currentPage: number = 1;
+  query: Filters;
+  filters = new Filters();
   totalPages: Array<number> = [];
+
+  @Input() set config(filters: Filters) {
+    if (filters) {
+      this.query = filters;
+      this.currentPage = 1;
+      this.get_list_filtered(this.query);
+    }
+  }
 
   constructor(
     private ProductService: ProductService, 
@@ -28,23 +39,32 @@ export class ProductsListComponent implements OnInit {
   
   ngOnInit(): void {
     this.slug_Category = this.ActivatedRoute.snapshot.paramMap.get('slug') || "";
-    // this.get_products();
-    this.get_list_paginated();
+    this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters') || "";//obtiene la 'id' del link
+    this.get_products();
+    // this.get_list_paginated();
   }
 
   get_products(): void {
     if (this.slug_Category !== "") {
       this.CategoryService.get_category(this.slug_Category).subscribe({
-        next: data => this.listProducts = data.products,
+        next: data => {
+          this.listProducts = data.products;
+        },
         error: e => console.error(e)
       });
     } else {
-      this.ProductService.all_products().subscribe({
-        next: data => this.listProducts = data,
-        error: e => console.error(e)
-      });
+      // this.get_list_paginated();
+      this.get_list_filtered(this.filters);
     }
   }
+
+  get_list_filtered(filters: Filters) {
+    this.filters = filters;
+    console.log(filters);
+  }
+
+
+
 
   getRequestParams(offset: number, limit: number): any {
     let params: any = {};
@@ -61,12 +81,19 @@ export class ProductsListComponent implements OnInit {
       (data) => {
         this.listProducts = data.products;
         this.totalPages = Array.from(new Array(Math.ceil(data.product_count/this.limit)), (val, index) => index + 1);
-        console.log(this.listProducts);
         },
       (error) => {
         console.log(error);
       }
     );
+  }
+
+  setPageTo(pageNumber: number) {
+    this.currentPage = pageNumber;
+    if (this.limit) {
+      this.offset = this.limit * (this.currentPage - 1);
+    }
+    this.get_list_paginated();
   }
 
 }

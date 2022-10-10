@@ -23,17 +23,38 @@ exports.create_product = async (req, res) => {
 // Retrieve all Product from the database.
 exports.findAll_product = async (req, res) => {
   try {
+
     let query = {};
     let transUndefined = (varQuery, otherResult) => {
       return varQuery != "undefined" && varQuery ? varQuery : otherResult;
     };
+
     let limit = transUndefined(req.query.limit, 2);
     let offset = transUndefined(req.query.offset, 0);
-    const products = await Product.find(query).sort("name").limit(Number(limit)).skip(0);
+    let name = transUndefined(req.query.name, "");
+    let price_min = transUndefined(req.query.price_min, 0);
+    let price_max = transUndefined(req.query.price_max, Number.MAX_SAFE_INTEGER);
+    let category = transUndefined(Number(req.query.category), -1);
+    let nameReg = new RegExp(name);
+
+    query = {
+      name: { $regex: nameReg },
+      $and: [{ price: { $gte: price_min } }, { price: { $lte: price_max } }],
+    };
+
+    if (category != -1) {
+      query.id_category = category;
+    }
+
+    // console.log(query);
+
+    const products = await Product.find(query).sort("name").limit(Number(limit)).skip(Number(offset));
     const product_count = await Product.find(query).countDocuments();
+
     if (!products) {
       res.status(404).json({ msg: "No existe el product" });
     }
+
     return res.json({products: products.map(product => product.toJSONFor()), product_count: product_count});
   } catch (error) {
     res.status(400).send({ message: "Some error occurred while retrieving products." });

@@ -1,20 +1,22 @@
+<app-filters (filterEvent)="get_list_filtered($event)" [listCategories]="listCategories"></app-filters>
+
 <div>
     <div *ngIf="listProducts.length == 0">No products</div>
     <div *ngIf="listProducts" class="container">
         <app-product-details class="item" *ngFor="let product of listProducts" [product]="product"></app-product-details>
     </div>
 
-    <!-- <nav class="d-flex justify-content-center mt-4" *ngIf="listProducts.length != 0 && totalPages.length != 1">
-    <ul class="pagination pg-blue">
-        <li *ngIf="currentPage != 1" class="page-item" (click)="setPageTo(currentPage-1)">
-        <span class="page-link">Previous</span>
-        </li>
-        <li class="page-item" [ngClass]="{'active': pageNumber === currentPage}" *ngFor="let pageNumber of totalPages" (click)="setPageTo(pageNumber)">
-        <span class="page-link">{{ pageNumber }}</span>
-        </li>
-        <li *ngIf="currentPage != totalPages[totalPages.length-1]" class="page-item" (click)="setPageTo(currentPage+1)">
-        <span class="page-link">Next</span>
-        </li>
-    </ul>
-    </nav> -->
+    <nav class="d-flex justify-content-center mt-4" *ngIf="listProducts.length != 0 && totalPages.length != 1">
+        <ul class="pagination pg-blue">
+            <li *ngIf="currentPage != 1" class="page-item" (click)="setPageTo(currentPage-1)">
+            <span class="page-link">Previous</span>
+            </li>
+            <li class="page-item" [ngClass]="{'active': pageNumber === currentPage}" *ngFor="let pageNumber of totalPages" (click)="setPageTo(pageNumber)">
+            <span class="page-link">{{ pageNumber }}</span>
+            </li>
+            <li *ngIf="currentPage != totalPages[totalPages.length-1]" class="page-item" (click)="setPageTo(currentPage+1)">
+            <span class="page-link">Next</span>
+            </li>
+        </ul>
+    </nav>
 </div>
