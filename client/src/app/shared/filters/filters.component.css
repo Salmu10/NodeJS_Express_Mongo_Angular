@@ -1,0 +1,32 @@
+.container-filters {
+    display: block;
+    float: left;
+    width: 20%;
+    border: 2px #333 solid;
+    padding: 10px;
+    margin: 1%;
+}
+
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 10px;
+}
+
+/* .form-grup {
+    width: 20%;
+    border: 2px #333 solid;
+    padding: 20px;
+    text-align: center;
+}
+
+.form-grup input, .form-grup select{
+    display: block;
+    margin-top: 5%;
+    width: 250px;
+}
+
+.list_products {
+    width: 75%;
+} */

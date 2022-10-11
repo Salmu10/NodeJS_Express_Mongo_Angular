@@ -24,8 +24,24 @@ const product_schema = mongoose.Schema({
         type: String,
         required: true
     },
+    name_cat: {
+        type: String,
+        requiered: true
+    },
+    state: {
+        type: String,
+        requiered: true
+    },
+    location: {
+        type: String,
+        requiered: true
+    },
     owner: {
         type: String,
+        required: true
+    },
+    product_image: {
+        type: [String],
         required: true
     }
 });
@@ -50,6 +66,9 @@ product_schema.methods.toJSONFor = function(){
       price: this.price,
       description: this.description,
       id_category: this.id_category,
+      name_cat: this.name_cat,
+      state: this.state,
+      location: this.location,
       owner: this.owner,
     };
 };

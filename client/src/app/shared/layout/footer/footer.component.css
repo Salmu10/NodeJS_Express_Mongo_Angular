@@ -1,7 +1,9 @@
 .footer {
+    display: block;
     padding: 40px 0;
     background-color: #333;
     color: white;
+    margin-top: 20%;
 }
   
 .footer ul {

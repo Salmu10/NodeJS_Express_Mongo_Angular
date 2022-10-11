@@ -27,6 +27,7 @@ export class ProductsListComponent implements OnInit {
       this.query = filters;
       this.currentPage = 1;
       this.get_list_filtered(this.query);
+      console.log("hola filters");
     }
   }
 
@@ -45,6 +46,7 @@ export class ProductsListComponent implements OnInit {
   }
 
   get_products(): void {
+    this.getListForCategory();
     if (this.slug_Category !== "") {
       this.CategoryService.get_category(this.slug_Category).subscribe({
         next: data => {
@@ -63,6 +65,17 @@ export class ProductsListComponent implements OnInit {
     console.log(filters);
   }
 
+  getListForCategory() {
+    this.CategoryService.all_categories().subscribe(
+      (data) => {
+        this.listCategories = data;
+        console.log(this.listCategories);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 
 
 

@@ -9,7 +9,11 @@ exports.create_product = async (req, res) => {
         price: req.body.price || 0,
         description: req.body.description || null,
         id_category: req.body.id_category || null,
+        name_cat: req.body.name_cat || null,
+        state: req.body.state || null,
+        location: req.body.location || null,
         owner: req.body.owner || null,
+        product_image: req.body.product_image || null,
     };
     const product = new Product(product_data);
     const category = await Category.updateOne({slug: product.id_category}, {$push: {products: product._id}})
@@ -29,7 +33,7 @@ exports.findAll_product = async (req, res) => {
       return varQuery != "undefined" && varQuery ? varQuery : otherResult;
     };
 
-    let limit = transUndefined(req.query.limit, 2);
+    let limit = transUndefined(req.query.limit, 4);
     let offset = transUndefined(req.query.offset, 0);
     let name = transUndefined(req.query.name, "");
     let price_min = transUndefined(req.query.price_min, 0);
@@ -91,7 +95,11 @@ exports.update_product = async (req, res) => {
       old_product.price = req.body.price || old_product.price;
       old_product.description = req.body.description || old_product.description;
       old_product.id_category = req.body.owner || old_product.id_category;
-      old_product.owner = req.body.owner || old_product.owner;
+      old_product.name_cat = req.body.name_cat || null,
+      old_product.state = req.body.state || null,
+      old_product.location = req.body.location || null,
+      old_product.owner = req.body.owner || null,
+      old_product.product_image = req.body.product_image || null;
       const update = await old_product.save();
 
       if (!update) {res.status(404).send({message: `Cannot update Product with id=${id}. Maybe Product was not found!`}); }

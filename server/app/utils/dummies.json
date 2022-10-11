@@ -1,0 +1,79 @@
+[
+    {
+        "name": "Iphone 12",
+        "price": 500,
+        "description": "Iphone 12 pro negro mate",
+        "id_category": "moviles-kae5u6",
+        "name_cat": "Móviles",
+        "state": "Seminuevo",
+        "location": "Valencia",
+        "owner": "Rafa",
+        "product_image": "Iphone12.jpg"
+    },
+    {
+        "name": "Iphone 13",
+        "price": 900,
+        "description": "Iphone 13 rojo",
+        "id_category": "moviles-kae5u6",
+        "name_cat": "Móviles",
+        "state": "Nuevo",
+        "location": "Barcelona",
+        "owner": "Paco",
+        "product_image": "Iphone13.jpg"
+    },
+    {
+        "name": "Pantalón vaquero",
+        "price": 25,
+        "description": "Pantalón vaquero azul marino",
+        "id_category": "ropa-mgymvj",
+        "name_cat": "Ropa",
+        "state": "Nuevo",
+        "location": "Ontinyent",
+        "owner": "Amparo",
+        "product_image": "Vaquero.jpg"
+    },
+    {
+        "name": "Sudadera roja",
+        "price": 35,
+        "description": "Sudadera roja de la marca nike",
+        "id_category": "ropa-mgymvj",
+        "name_cat": "Ropa",
+        "state": "En buen estado",
+        "location": "Ontinyent",
+        "owner": "Salva",
+        "product_image": "Sudadera_roja.jpg"
+    },
+    {
+        "name": "Chaqueta de cuero",
+        "price": 35,
+        "description": "Chaqueta de cuero bonita",
+        "id_category": "ropa-mgymvj",
+        "name_cat": "Ropa",
+        "state": "Seminuevo",
+        "location": "Ontinyent",
+        "owner": "Salva",
+        "product_image": "Chaqueta_cuero.jpg"
+    },
+    {
+        "name": "Camisa blanca",
+        "price": 35,
+        "description": "Camisa blanca de tommy hilfiger",
+        "id_category": "ropa-mgymvj",
+        "name_cat": "Ropa",
+        "state": "Nuevo",
+        "location": "Ontinyent",
+        "owner": "Salva",
+        "product_image": "Camisa_blanca.jpg"
+    },
+    {
+        "name": "Sudadera azul",
+        "price": 45,
+        "description": "Sudadera azul de la marca puma",
+        "id_category": "ropa-mgymvj",
+        "name_cat": "Ropa",
+        "state": "Seminuevo",
+        "location": "Ontinyent",
+        "owner": "Salva",
+        "product_image": "Sudadera_azul.jpg"
+    }
+]

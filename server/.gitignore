@@ -49,4 +49,3 @@ variables.env
 
 package-lock.json
 *.env
-app/config

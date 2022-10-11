@@ -1,13 +1,20 @@
+<div class="container-filters">
+  <input class="form-control input-lg mr-2"type="number" id="price_min" [(ngModel)]="price_min" min="0" step="10" placeholder="Precio Minimo" (input)="changeEvent(this)">
+  <input class="form-control input-lg mr-2" type="number" id="price_max" [(ngModel)]="price_max" min="0" step="10" placeholder="Precio Maximo" (input)="changeEvent(this)">
+  <span class="custom-dropdown big">
+  </span>
 
-<div class="container">
-    <div class="form-group form-inline form-horizontal form-group-lg block d-flex justify-content-center">
-        
-      <div class="form-group">
-        <input class="form-control input-lg mr-2"type="number" id="price_min" [(ngModel)]="price_min" min="0" step="10" placeholder="Precio Minimo" (input)="changeEvent(this)">
-      </div>
-  
-      <div class="form-group">
-        <input class="form-control input-lg mr-2" type="number" id="price_max" [(ngModel)]="price_max" min="0" step="10" placeholder="Precio Maximo" (input)="changeEvent(this)">
-      </div>
-    </div>
+</div>
+
+<!-- <div class="container_filters">
+
+  <div class="form-grup">
+    <select class="form-control input-lg mr-2" name="category" id="category" [(ngModel)]="cat_slug" (change)="changeEvent(this)">
+      <option disabled selected value="">Categoria</option>
+      <option *ngFor="let category of listCategories" [value]="category.slug">{{category.category_name}}</option>
+    </select>
+    <input class="form-control input-lg mr-2"type="number" id="price_min" [(ngModel)]="price_min" min="0" step="10" placeholder="Precio Minimo" (input)="changeEvent(this)">
+    <input class="form-control input-lg mr-2" type="number" id="price_max" [(ngModel)]="price_max" min="0" step="10" placeholder="Precio Maximo" (input)="changeEvent(this)">
   </div>
+
+</div> -->

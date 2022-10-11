@@ -1,5 +1,14 @@
-.list {
-  text-align: left;
-  max-width: 750px;
-  margin: auto;
+.container_list_products {
+  display: block;
+  float: right;
+  width: 75%;
+  border: 2px #333 solid;
+  padding: 10px;
+  margin: 1%;
 }
+
+/* .container_cat {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+} */

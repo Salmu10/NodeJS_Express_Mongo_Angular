@@ -4,6 +4,7 @@ export class Filters {
     name?: string;
     price_min?: number;
     price_max?: number;
+    location?: string;
     category?: string;
     
     constructor(
@@ -12,6 +13,7 @@ export class Filters {
       name?: string,
       price_min?: number,
       price_max?: number,
+      location?: string,
       category?: string,
     ) {
       this.limit = limit || 3;
@@ -19,6 +21,7 @@ export class Filters {
       this.name = name;
       this.price_min = price_min;
       this.price_max = price_max;
+      this.location = location;
       this.category = category;
     }
   
@@ -27,11 +30,8 @@ export class Filters {
       if (this.name) count++;
       if (this.price_min) count++;
       if (this.price_max) count++;
+      if (this.location) count++;
       if (this.category) count++;
-      console.log(count);
-      console.log(this.name);
-      console.log(this.price_min);
-      console.log(this.price_max);
       return count;
     }
   }

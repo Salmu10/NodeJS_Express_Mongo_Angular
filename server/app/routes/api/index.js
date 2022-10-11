@@ -4,6 +4,7 @@ router.use('/products', require('./product.routes'));
 router.use('/furnitures', require('./furniture.routes'));
 router.use('/categories', require('./category.routes'));
 router.use('/carousel/categories', require('./carousel.routes'));
+// router.use('/dummies', require('./dummies'));
 
 router.use(function(err, req, res, next){
   if(err.name === 'ValidationError'){
