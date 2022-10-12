@@ -1,5 +1,6 @@
 const Product = require("../models/product.model.js");
 const Category = require("../models/category.model.js");
+const { off } = require("../models/product.model.js");
 
 // Create and Save a new Product
 exports.create_product = async (req, res) => {
@@ -33,24 +34,19 @@ exports.findAll_product = async (req, res) => {
       return varQuery != "undefined" && varQuery ? varQuery : otherResult;
     };
 
-    let limit = transUndefined(req.query.limit, 4);
+    let limit = transUndefined(req.query.limit, 3);
     let offset = transUndefined(req.query.offset, 0);
-    let name = transUndefined(req.query.name, "");
+    let category = transUndefined(req.query.category, "");
     let price_min = transUndefined(req.query.price_min, 0);
     let price_max = transUndefined(req.query.price_max, Number.MAX_SAFE_INTEGER);
-    let category = transUndefined(Number(req.query.category), -1);
-    let nameReg = new RegExp(name);
 
     query = {
-      name: { $regex: nameReg },
       $and: [{ price: { $gte: price_min } }, { price: { $lte: price_max } }],
     };
 
-    if (category != -1) {
+    if (category != "") {
       query.id_category = category;
     }
-
-    // console.log(query);
 
     const products = await Product.find(query).sort("name").limit(Number(limit)).skip(Number(offset));
     const product_count = await Product.find(query).countDocuments();

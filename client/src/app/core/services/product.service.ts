@@ -17,7 +17,6 @@ export class ProductService {
   get_products(filters: Filters): Observable<{products: Product[], product_count: number}>{
     let params = {};
     params = filters;
-    console.log(filters);
     return this.apiService.get('products', new HttpParams({fromObject:params}));
   }
 

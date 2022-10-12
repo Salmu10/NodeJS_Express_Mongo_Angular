@@ -1,17 +1,16 @@
-button {
-    border: none;
-    background-color: transparent;
+header {
+    background-color: #333;
+    padding: 1em 0;
+    margin-bottom: 1em;
 }
 
-header {
-    height: 110px;
-    background-color: #333;
+.header-container {
     display: grid;
     gap: 10px;
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-header img {
+.header-container img {
     height: 100px;
     grid-column-start: 1;
     grid-column-end: 3;
@@ -25,11 +24,16 @@ nav {
     gap: 0px 15px;
 }
 
-header nav button {
+.header-container nav button {
     grid-row-start: 2;
     grid-row-end: 3;
     color: black;
     font-size: 1.2em;
     background-color: mintcream;
     border-radius: 20px;
+}
+
+button {
+    border: none;
+    background-color: transparent;
 }

@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { HeaderComponent } from './shared/layout/index';
-import { FooterComponent } from './shared/layout/index';
+// import { FooterComponent } from './shared/layout/index';
 
 // Toastr
 import { ToastrModule } from 'ngx-toastr';
@@ -19,7 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    // FooterComponent
   ],
   imports: [
     BrowserModule,

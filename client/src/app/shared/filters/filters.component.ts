@@ -12,8 +12,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 export class FiltersComponent {
   
-  price_min: number | undefined;
   price_max: number | undefined;
+  price_min: number | undefined;
   cat_slug: string | null;
 
   routeFilters: string | null;
@@ -25,11 +25,12 @@ export class FiltersComponent {
 
   constructor(
     private ActivatedRoute: ActivatedRoute, 
+    private Location: Location
   ) {
     this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters');
   }
 
-  public price_calc(price_min: number, price_max: number) {
+  public price_calc(price_min: number | undefined, price_max: number | undefined) {    
     if (typeof price_min == 'number' && typeof price_max == 'number') {
       if(price_min > price_max){
         this.price_min = price_min;
@@ -41,7 +42,7 @@ export class FiltersComponent {
     }
   }
 
-  public changeEvent(value: any) {
+  public filter_products() {
     this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters');
     if (this.routeFilters) {
       this.filters = new Filters();
@@ -51,13 +52,31 @@ export class FiltersComponent {
       this.filters = new Filters();
     }
 
-    if (value.cat_slug) {
-      this.filters.category = value.cat_slug;
+    if (this.cat_slug) {
+      this.filters.category = this.cat_slug;
     }
 
-    this.price_calc(value.price_min, value.price_max);
+    this.price_calc(this.price_min, this.price_max);
     this.filters.price_min = this.price_min ? this.price_min : undefined;
     this.filters.price_max = this.price_max == 0 || this.price_max == null ? undefined : this.price_max;
     this.filters.offset = 0;
+
+    this.checkTime(this.filters);
+  }
+
+  // remove_all() {
+  //   this.cat_slug = '';
+  //   this.price_min = undefined;
+  //   this.price_max = undefined;
+  //   this.filter_products();
+  // }
+
+  private checkTime(filters: Filters) {
+    setTimeout(() => {
+      if (filters === this.filters) {
+        this.Location.replaceState('/shop/' + btoa(JSON.stringify(this.filters)));
+        this.filterEvent.emit(this.filters);
+      }
+    }, 200);
   }
 }

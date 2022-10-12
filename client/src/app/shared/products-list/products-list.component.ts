@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ProductService, Product, Filters, CategoryService, Category } from '../../core'
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-products-list',
@@ -12,10 +13,9 @@ export class ProductsListComponent implements OnInit {
 
   listProducts: Product[] = [];
   listCategories: Category[] = [];
-  slug_Category: String = "";
-  routeFilters: string = "";
+  slug_Category: String | null;
+  routeFilters: string | null;
 
-  offset = 0;
   limit: number = 3;
   currentPage: number = 1;
   query: Filters;
@@ -34,26 +34,30 @@ export class ProductsListComponent implements OnInit {
   constructor(
     private ProductService: ProductService, 
     private CategoryService: CategoryService, 
-    private ActivatedRoute: ActivatedRoute
+    private ActivatedRoute: ActivatedRoute,
+    private Location: Location,
   ) {
   }
   
   ngOnInit(): void {
-    this.slug_Category = this.ActivatedRoute.snapshot.paramMap.get('slug') || "";
-    this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters') || "";//obtiene la 'id' del link
+    this.slug_Category = this.ActivatedRoute.snapshot.paramMap.get('slug');
+    this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters');
     this.get_products();
     // this.get_list_paginated();
   }
 
   get_products(): void {
     this.getListForCategory();
-    if (this.slug_Category !== "") {
+    if (this.slug_Category !== null) {
       this.CategoryService.get_category(this.slug_Category).subscribe({
         next: data => {
           this.listProducts = data.products;
         },
         error: e => console.error(e)
       });
+    } else if (this.routeFilters !== null) {
+      this.refresRouteFilter();
+      this.get_list_filtered(this.filters);
     } else {
       // this.get_list_paginated();
       this.get_list_filtered(this.filters);
@@ -61,36 +65,10 @@ export class ProductsListComponent implements OnInit {
   }
 
   get_list_filtered(filters: Filters) {
+    // this.get_list_paginated();
     this.filters = filters;
     console.log(filters);
-  }
-
-  getListForCategory() {
-    this.CategoryService.all_categories().subscribe(
-      (data) => {
-        this.listCategories = data;
-        console.log(this.listCategories);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
-
-
-
-  getRequestParams(offset: number, limit: number): any {
-    let params: any = {};
-
-    params[`offset`] = offset;
-    params[`limit`] = limit;
-
-    return params;
-  }
-
-  get_list_paginated() {
-    const params = this.getRequestParams(this.offset, this.limit);
-    this.ProductService.get_products(params).subscribe(
+    this.ProductService.get_products(filters).subscribe(
       (data) => {
         this.listProducts = data.products;
         this.totalPages = Array.from(new Array(Math.ceil(data.product_count/this.limit)), (val, index) => index + 1);
@@ -101,12 +79,68 @@ export class ProductsListComponent implements OnInit {
     );
   }
 
-  setPageTo(pageNumber: number) {
-    this.currentPage = pageNumber;
-    if (this.limit) {
-      this.offset = this.limit * (this.currentPage - 1);
-    }
-    this.get_list_paginated();
+  getListForCategory() {
+    this.CategoryService.all_categories().subscribe(
+      (data) => {
+        this.listCategories = data;
+        // console.log(this.listCategories);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
+
+  refresRouteFilter() {
+    this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters');
+    if(typeof(this.routeFilters) == "string" ){
+      this.filters = JSON.parse(atob(this.routeFilters));
+      console.log('hola refresh');
+      
+    }else{
+      this.filters = new Filters();
+    }
+  }
+
+  setPageTo(pageNumber: number) {
+
+    this.currentPage = pageNumber;
+
+    if (typeof this.routeFilters === 'string') {
+      this.refresRouteFilter();
+    }
+
+    if (this.limit) {
+      this.filters.limit = this.limit;
+      this.filters.offset = this.limit * (this.currentPage - 1);
+    }
+
+    this.Location.replaceState('/shop/' + btoa(JSON.stringify(this.filters)));
+    this.get_list_filtered(this.filters);
+    // this.get_list_paginated();
+  }
+
+  // getRequestParams(offset: number, limit: number): any {
+  //   let params: any = {};
+
+  //   params[`offset`] = offset;
+  //   params[`limit`] = limit;
+
+  //   return params;
+  // }
+
+  // get_list_paginated() {
+  //   const params = this.getRequestParams(this.offset, this.limit);
+  //   this.ProductService.get_products(params).subscribe(
+  //     (data) => {
+  //       this.listProducts = data.products;
+  //       console.log(data.products);
+  //       this.totalPages = Array.from(new Array(Math.ceil(data.product_count/this.limit)), (val, index) => index + 1);
+  //       },
+  //     (error) => {
+  //       console.log(error);
+  //     }
+  //   );
+  // }
 
 }
