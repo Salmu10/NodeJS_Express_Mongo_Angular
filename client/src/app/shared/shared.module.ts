@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { NgxMultiselectModule } from '@ngx-lib/multiselect';
 
 import { CategoriesListComponent } from "./categories-list/categories-list.component";
 import { ProductsListComponent } from './products-list/products-list.component';
@@ -11,6 +12,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { CarouselComponent } from './carousel/carousel.component';
 import { CarouselItemsComponent } from './carousel-items/carousel-items.component';
 import { FiltersComponent } from './filters/filters.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
     imports: [
@@ -19,6 +21,7 @@ import { FiltersComponent } from './filters/filters.component';
         ReactiveFormsModule,
         HttpClientModule,
         InfiniteScrollModule,
+        NgxMultiselectModule,
         RouterModule
     ],
     declarations: [
@@ -28,6 +31,7 @@ import { FiltersComponent } from './filters/filters.component';
         ProductsListComponent,
         ProductDetailsComponent,
         FiltersComponent,
+        SearchComponent
     ],
     exports: [
         CategoriesListComponent,
@@ -36,6 +40,7 @@ import { FiltersComponent } from './filters/filters.component';
         ProductsListComponent,
         ProductDetailsComponent,
         FiltersComponent,
+        SearchComponent
     ],
 })
 

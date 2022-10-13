@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product, Filters } from '../models';
 import { ApiService } from './api.service';
+import { map } from 'rxjs/operators';
 
 const URL = 'http://localhost:8080/api/products';
 
@@ -18,6 +19,16 @@ export class ProductService {
     let params = {};
     params = filters;
     return this.apiService.get('products', new HttpParams({fromObject:params}));
+  }
+
+  find_product_name(search: string): Observable<any> {
+    console.log(search);
+    return this.http.get<Product>(`${URL}/list-search/` + search).pipe(
+      map((data) => {
+        // console.log(data);
+        return data;
+      })
+    );
   }
 
   all_products(): Observable<Product[]> {

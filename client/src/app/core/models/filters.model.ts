@@ -1,6 +1,7 @@
 export class Filters {
     limit?: number;
     offset?: number;
+    name?: string;
     price_min?: number;
     price_max?: number;
     location?: string;
@@ -9,6 +10,7 @@ export class Filters {
     constructor(
       limit?: number,
       offset?: number,
+      name?: string,
       price_min?: number,
       price_max?: number,
       location?: string,
@@ -16,6 +18,7 @@ export class Filters {
     ) {
       this.limit = limit || 3;
       this.offset = offset || 0;
+      this.name = name;
       this.price_min = price_min;
       this.price_max = price_max;
       this.location = location;
@@ -24,6 +27,7 @@ export class Filters {
   
     public length(): number {
       let count: number = 0;
+      if (this.name) count++;
       if (this.price_min) count++;
       if (this.price_max) count++;
       if (this.location) count++;

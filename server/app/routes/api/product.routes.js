@@ -5,6 +5,7 @@ const products = require('../../controllers/product.controller.js');
 //api/products
 router.post('/', products.create_product);
 router.get('/', products.findAll_product);
+router.get('/list-search/:search', products.find_product_name);
 router.get('/:id', products.findOne_product);
 router.put('/:id', products.update_product);
 router.delete('/:id', products.delete_product);

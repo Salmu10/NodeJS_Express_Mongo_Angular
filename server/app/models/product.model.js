@@ -73,4 +73,10 @@ product_schema.methods.toJSONFor = function(){
     };
 };
 
+product_schema.methods.toNameJSONFor = function () {
+    return {
+      name: this.name,
+    };
+  };
+
 module.exports = mongoose.model('Product', product_schema);

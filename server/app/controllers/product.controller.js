@@ -37,10 +37,13 @@ exports.findAll_product = async (req, res) => {
     let limit = transUndefined(req.query.limit, 3);
     let offset = transUndefined(req.query.offset, 0);
     let category = transUndefined(req.query.category, "");
+    let name = transUndefined(req.query.name, "");
     let price_min = transUndefined(req.query.price_min, 0);
     let price_max = transUndefined(req.query.price_max, Number.MAX_SAFE_INTEGER);
+    let nameReg = new RegExp(name);
 
     query = {
+      name: { $regex: nameReg },
       $and: [{ price: { $gte: price_min } }, { price: { $lte: price_max } }],
     };
 
@@ -60,6 +63,24 @@ exports.findAll_product = async (req, res) => {
     res.status(400).send({ message: "Some error occurred while retrieving products." });
   }
 }
+
+exports.find_product_name = async (req, res) => {
+  try {
+    let search = new RegExp(req.params.search);
+    
+    const product = await Product.find({ name: { $regex: search } }).limit(20);
+    
+    if (!product) {
+      res.status(404).json({ msg: "No existe el product" });
+    }
+
+    res.json(product.map((product) => product.toNameJSONFor()));
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Hubo un error en router.get /search/:search");
+  }
+};
 
 exports.findOne_product = async (req, res) => {
   try {
