@@ -14,11 +14,15 @@ export class FiltersComponent {
   
   price_max: number | undefined;
   price_min: number | undefined;
-  cat_slug: string | null;
+  cat_slug: string = "";
 
   routeFilters: string | null;
   filters: Filters;
   filterForm: FormGroup;
+
+  options: Array<any> = [];
+  selected_state: Array<any> = [];
+  states: Array<any> = [];
 
   @Input() listCategories: Category[];
   @Output() filterEvent: EventEmitter<Filters> = new EventEmitter();
@@ -27,7 +31,22 @@ export class FiltersComponent {
     private ActivatedRoute: ActivatedRoute, 
     private Location: Location
   ) {
+  }
+  
+  ngOnInit(): void {
+    this.ActivatedRoute.snapshot.paramMap.get('filters') != undefined ? this.Highlights() : "";
     this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters');
+    this.dropdown();
+  }
+
+  public dropdown() {
+    this.options = [
+      { id: 1, name: "Estado del producto", disabled: true},
+      { id: 2, name: "Nuevo"},
+      { id: 3, name: "Seminuevo" },
+      { id: 4, name: "En buen estado" },
+      { id: 5, name: "En mal estado" }
+    ];
   }
 
   public price_calc(price_min: number | undefined, price_max: number | undefined) {    
@@ -42,18 +61,43 @@ export class FiltersComponent {
     }
   }
 
+  Highlights() {
+    let routeFilters = JSON.parse(atob(this.ActivatedRoute.snapshot.paramMap.get('filters') || ''));
+    
+    if (routeFilters.search == undefined) {
+      this.cat_slug = routeFilters.category || '';
+      this.price_min = routeFilters.price_min;
+      this.price_max = routeFilters.price_max;
+      this.selected_state = [];
+      let options = [];
+      for (let row in routeFilters.state) {
+        options.push({name: routeFilters.state[row]});
+      }
+      this.selected_state = options || [];
+    }
+  }
+
   public filter_products() {
     this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters');
     if (this.routeFilters) {
       this.filters = new Filters();
       this.filters = JSON.parse(atob(this.routeFilters));
-      console.log(this.filters);
     } else {
       this.filters = new Filters();
     }
 
     if (this.cat_slug) {
       this.filters.category = this.cat_slug;
+    }
+
+    let res_estados = [];
+    for (let row in this.selected_state) {
+      res_estados.push(this.selected_state[row].name);
+    }
+    this.states = res_estados ? res_estados : [];     
+
+    if (this.states) {
+      this.filters.state = this.states;
     }
 
     this.price_calc(this.price_min, this.price_max);
@@ -64,12 +108,13 @@ export class FiltersComponent {
     this.checkTime(this.filters);
   }
 
-  // remove_all() {
-  //   this.cat_slug = '';
-  //   this.price_min = undefined;
-  //   this.price_max = undefined;
-  //   this.filter_products();
-  // }
+  remove_all() {
+    this.cat_slug = '';
+    this.price_min = undefined;
+    this.price_max = undefined;
+    this.selected_state = [];
+    this.filter_products();
+  }
 
   private checkTime(filters: Filters) {
     setTimeout(() => {

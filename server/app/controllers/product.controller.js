@@ -38,6 +38,7 @@ exports.findAll_product = async (req, res) => {
     let offset = transUndefined(req.query.offset, 0);
     let category = transUndefined(req.query.category, "");
     let name = transUndefined(req.query.name, "");
+    let state = transUndefined(req.query.state, "");
     let price_min = transUndefined(req.query.price_min, 0);
     let price_max = transUndefined(req.query.price_max, Number.MAX_SAFE_INTEGER);
     let nameReg = new RegExp(name);
@@ -46,6 +47,10 @@ exports.findAll_product = async (req, res) => {
       name: { $regex: nameReg },
       $and: [{ price: { $gte: price_min } }, { price: { $lte: price_max } }],
     };
+
+    if (state != "") {
+      query.state = state;
+    }
 
     if (category != "") {
       query.id_category = category;
@@ -61,6 +66,22 @@ exports.findAll_product = async (req, res) => {
     return res.json({products: products.map(product => product.toJSONFor()), product_count: product_count});
   } catch (error) {
     res.status(400).send({ message: "Some error occurred while retrieving products." });
+  }
+}
+
+// Retrieve all Category from the database.
+exports.find_products_category = async (req, res) => {
+  try {
+    const id = req.params.id
+    const { offset, limit } = req.query;
+    const products = await Product.find({ id_category: id }).limit(Number(limit)).skip(Number(offset));
+    const product_count = await Product.find({ id_category: id }).countDocuments();
+    if (!products) {
+      res.status(404).json({ msg: "No existe el product" });
+    }
+    return res.json({products: products.map(product => product.toJSONFor()), product_count: product_count});
+  } catch (error) {
+    res.status(400).send({ message: "Some error occurred while retrieving categorys." });
   }
 }
 
@@ -105,7 +126,6 @@ exports.update_product = async (req, res) => {
 
       if (old_product.name !== req.body.name && req.body.name !== undefined) {
         old_product.slug = null;
-        // console.log('error');
       }
 
       old_product.name = req.body.name || old_product.name;
@@ -127,7 +147,7 @@ exports.update_product = async (req, res) => {
   }
 }
 
-// // Delete a Product with the specified id in the request
+// Delete a Product with the specified id in the request
 exports.delete_product = async (req, res) => {
   try {
     const id = req.params.id

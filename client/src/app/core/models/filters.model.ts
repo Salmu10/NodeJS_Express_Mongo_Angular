@@ -6,6 +6,7 @@ export class Filters {
     price_max?: number;
     location?: string;
     category?: string;
+    state?: String[];
     
     constructor(
       limit?: number,
@@ -15,6 +16,7 @@ export class Filters {
       price_max?: number,
       location?: string,
       category?: string,
+      state?: [],
     ) {
       this.limit = limit || 3;
       this.offset = offset || 0;
@@ -23,6 +25,7 @@ export class Filters {
       this.price_max = price_max;
       this.location = location;
       this.category = category;
+      this.state = state;
     }
   
     public length(): number {
@@ -32,6 +35,7 @@ export class Filters {
       if (this.price_max) count++;
       if (this.location) count++;
       if (this.category) count++;
+      if (this.state) count++;
       return count;
     }
   }

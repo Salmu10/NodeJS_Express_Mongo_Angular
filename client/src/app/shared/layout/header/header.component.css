@@ -13,11 +13,13 @@ header {
 .header-container img {
     height: 100px;
     grid-column-start: 1;
-    grid-column-end: 3;
+    grid-column-end: 2;
     margin-left: 50px;
 }
 
 nav {
+    grid-column-start: 3;
+    grid-column-end: 4;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -27,10 +29,12 @@ nav {
 .header-container nav button {
     grid-row-start: 2;
     grid-row-end: 3;
-    color: black;
-    font-size: 1.2em;
+    color: #333;
     background-color: mintcream;
-    border-radius: 20px;
+    border-radius: 10px;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 button {

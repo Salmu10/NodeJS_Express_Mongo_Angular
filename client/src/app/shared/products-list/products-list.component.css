@@ -13,15 +13,22 @@
 .filters {
   float: left;
   margin-left: 1%;
-  width: 20%;
-  border: 2px #333 solid;
+  width: 25%;
+  border: 3px #333 solid;
+  border-radius: 10px;
   padding: 10px;
 }
 
 .container_list_products {
   float: right;
   margin-right: 1%;
-  width: 75%;
+  width: 70%;
+}
+
+.no_products {
+  padding-top: 20px;
+  padding-left: 30px;
+  font-size: 20px;
 }
 
 .pagination {
@@ -39,7 +46,8 @@
 
 .item {
   display: block;
-  border: 2px #333 solid;
+  border: 3px #333 solid;
+  border-radius: 10px;
   padding: 10px;
   margin-bottom: 2%;
 }

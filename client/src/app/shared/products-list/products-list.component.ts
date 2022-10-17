@@ -13,9 +13,10 @@ export class ProductsListComponent implements OnInit {
 
   listProducts: Product[] = [];
   listCategories: Category[] = [];
-  slug_Category: String | null;
+  slug_Category: string | null;
   routeFilters: string | null;
 
+  offset: number = 0;
   limit: number = 3;
   currentPage: number = 1;
   query: Filters;
@@ -43,15 +44,28 @@ export class ProductsListComponent implements OnInit {
     this.slug_Category = this.ActivatedRoute.snapshot.paramMap.get('slug');
     this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters');
     this.get_products();
-    // this.get_list_paginated();
+  }
+
+  getRequestParams(offset: number, limit: number): any {
+    let params: any = {};
+
+    params[`offset`] = offset;
+    params[`limit`] = limit;
+
+    return params;
   }
 
   get_products(): void {
     this.getListForCategory();
+    const params = this.getRequestParams(this.offset, this.limit);
     if (this.slug_Category !== null) {
-      this.CategoryService.get_category(this.slug_Category).subscribe({
+      this.ProductService.get_products_from_category(this.slug_Category, params).subscribe({
         next: data => {
+          if (this.slug_Category) {
+            this.filters.category = this.slug_Category;
+          }
           this.listProducts = data.products;
+          this.totalPages = Array.from(new Array(Math.ceil(data.product_count/this.limit)), (val, index) => index + 1);
         },
         error: e => console.error(e)
       });
@@ -59,15 +73,12 @@ export class ProductsListComponent implements OnInit {
       this.refresRouteFilter();
       this.get_list_filtered(this.filters);
     } else {
-      // this.get_list_paginated();
       this.get_list_filtered(this.filters);
     }
   }
 
   get_list_filtered(filters: Filters) {
-    // this.get_list_paginated();
     this.filters = filters;
-    console.log(filters);
     this.ProductService.get_products(filters).subscribe(
       (data) => {
         this.listProducts = data.products;
@@ -83,7 +94,6 @@ export class ProductsListComponent implements OnInit {
     this.CategoryService.all_categories().subscribe(
       (data) => {
         this.listCategories = data;
-        // console.log(this.listCategories);
       },
       (error) => {
         console.log(error);
@@ -95,8 +105,6 @@ export class ProductsListComponent implements OnInit {
     this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters');
     if(typeof(this.routeFilters) == "string" ){
       this.filters = JSON.parse(atob(this.routeFilters));
-      console.log('hola refresh');
-      
     }else{
       this.filters = new Filters();
     }
@@ -117,30 +125,5 @@ export class ProductsListComponent implements OnInit {
 
     this.Location.replaceState('/shop/' + btoa(JSON.stringify(this.filters)));
     this.get_list_filtered(this.filters);
-    // this.get_list_paginated();
   }
-
-  // getRequestParams(offset: number, limit: number): any {
-  //   let params: any = {};
-
-  //   params[`offset`] = offset;
-  //   params[`limit`] = limit;
-
-  //   return params;
-  // }
-
-  // get_list_paginated() {
-  //   const params = this.getRequestParams(this.offset, this.limit);
-  //   this.ProductService.get_products(params).subscribe(
-  //     (data) => {
-  //       this.listProducts = data.products;
-  //       console.log(data.products);
-  //       this.totalPages = Array.from(new Array(Math.ceil(data.product_count/this.limit)), (val, index) => index + 1);
-  //       },
-  //     (error) => {
-  //       console.log(error);
-  //     }
-  //   );
-  // }
-
 }

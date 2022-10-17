@@ -6,7 +6,7 @@
         </div>
 
         <div *ngIf="listProducts" class="container_list_products">
-            <div *ngIf="listProducts.length == 0">No products</div>
+            <div class="no_products" *ngIf="listProducts.length == 0">No products</div>
             <app-product-details class="item" *ngFor="let product of listProducts" [product]="product"></app-product-details>
         </div>
 

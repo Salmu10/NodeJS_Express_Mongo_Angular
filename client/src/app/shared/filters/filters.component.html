@@ -4,20 +4,14 @@
       <option disabled selected value="">Categoria</option>
       <option *ngFor="let category of listCategories" [value]="category.slug">{{category.category_name}}</option>
     </select>
+
   <label for='etiquetas' class="etiqueta">Precio:</label>
-  <input class="form-control input-lg mr-2"type="number" id="price_min" [(ngModel)]="price_min" min="0" step="10" placeholder="Precio Minimo" (input)="filter_products()">
+  <input class="form-control input-lg mr-2" type="number" id="price_min" [(ngModel)]="price_min" min="0" step="10" placeholder="Precio Minimo" (input)="filter_products()">
   <input class="form-control input-lg mr-2" type="number" id="price_max" [(ngModel)]="price_max" min="0" step="10" placeholder="Precio Maximo" (input)="filter_products()">
+  
+  <label for='etiquetas' class="etiqueta">Estado:</label>
+  <ngx-multiselect id="state" [multiple]="true" [(ngModel)]="selected_state" [options]="options" (onItemClick)="filter_products()"
+  [showSearchFilter]="false" [showHelperElements]="false" theme="bootstrap" showMaxLables="1"></ngx-multiselect>
+
+  <button (click)="remove_all()" class="remove_btn">Remove Filters</button>
 </div>
-
-<!-- <div class="container_filters">
-
-  <div class="form-grup">
-    <select class="form-control input-lg mr-2" name="category" id="category" [(ngModel)]="cat_slug" (change)="changeEvent(this)">
-      <option disabled selected value="">Categoria</option>
-      <option *ngFor="let category of listCategories" [value]="category.slug">{{category.category_name}}</option>
-    </select>
-    <input class="form-control input-lg mr-2"type="number" id="price_min" [(ngModel)]="price_min" min="0" step="10" placeholder="Precio Minimo" (input)="changeEvent(this)">
-    <input class="form-control input-lg mr-2" type="number" id="price_max" [(ngModel)]="price_max" min="0" step="10" placeholder="Precio Maximo" (input)="changeEvent(this)">
-  </div>
-
-</div> -->

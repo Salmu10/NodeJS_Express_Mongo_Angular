@@ -20,4 +20,8 @@ export class ApiService {
   get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
     return this.http.get(`${URL}${path}`, { params }).pipe(catchError(this.formatErrors));
   }
+
+  get_products(path: string, slug: String, params: HttpParams = new HttpParams()): Observable<any> {
+    return this.http.get(`${URL}${path}${slug}`, { params }).pipe(catchError(this.formatErrors));
+  }
 }

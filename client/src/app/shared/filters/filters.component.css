@@ -8,3 +8,31 @@
     text-transform: uppercase;
     font-weight: bold;
 }
+
+.container-filters input, .container-filters select {
+    margin-bottom: 4%;
+    background-image: linear-gradient(#fff,#f7f7f7);
+}
+
+#state {
+    display: block;
+}
+
+.remove_btn{
+    display: block;
+    margin: auto;
+    width: 180px;
+    padding: 8px;
+    font-size: 15px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-top: 30%;
+    color: #333;
+    background-image: linear-gradient(#fff,#f7f7f7);
+    border: 2px solid #333;
+    border-radius: 8px;
+}
+
+.remove_btn:hover {
+    background: rgb(192, 192, 192);
+}
