@@ -10,7 +10,7 @@ var corsOptions = {
   origin: process.env.CORSURL || "http://localhost:4200"
 };
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 
 connect_db();
 
