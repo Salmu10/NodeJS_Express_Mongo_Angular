@@ -24,6 +24,7 @@ nav {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     gap: 0px 15px;
+    margin-right: 20px;
 }
 
 .header-container nav button {

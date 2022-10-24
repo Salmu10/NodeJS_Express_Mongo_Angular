@@ -24,4 +24,9 @@ export class ApiService {
   get_products(path: string, slug: String, params: HttpParams = new HttpParams()): Observable<any> {
     return this.http.get(`${URL}${path}${slug}`, { params }).pipe(catchError(this.formatErrors));
   }
+
+  post(path: string, body: Object = {}): Observable<any> {
+    return this.http.post(`${URL}${path}`, body).pipe(catchError(this.formatErrors));
+  }
+
 }

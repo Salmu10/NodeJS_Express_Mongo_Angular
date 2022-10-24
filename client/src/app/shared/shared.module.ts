@@ -39,6 +39,8 @@ import { SearchComponent } from './search/search.component';
         CarouselComponent,
         ProductsListComponent,
         ProductDetailsComponent,
+        FormsModule,
+        ReactiveFormsModule,
         FiltersComponent,
         SearchComponent
     ],

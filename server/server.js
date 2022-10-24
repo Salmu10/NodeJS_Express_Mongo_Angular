@@ -18,6 +18,8 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 
+require('./app/models/index.js');
+require('./app/config/passport');
 app.use(require("./app/routes/index"));
 
 app.listen(PORT, () => {

@@ -1,6 +1,5 @@
 const Product = require("../models/product.model.js");
 const Category = require("../models/category.model.js");
-const { off } = require("../models/product.model.js");
 
 // Create and Save a new Product
 exports.create_product = async (req, res) => {

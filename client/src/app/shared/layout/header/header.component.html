@@ -4,6 +4,9 @@
     <nav>
       <button routerLink="home">Home</button>
       <button routerLink="shop">Shop</button>
+      <button routerLink="auth/login" *ngIf="!is_loged">Log in</button>
+      <!-- <button routerLink="profile/{{user.username}}" *ngIf="is_loged">Profile</button> -->
+      <!-- <button *ngIf="is_loged" (click)="logout()">Logout</button> -->
     </nav>
   </div>
 </header>

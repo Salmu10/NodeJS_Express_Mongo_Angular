@@ -40,8 +40,6 @@ export class ProductService {
 
   get_products_from_category(slug: String, params: any): Observable<{products: Product[], product_count: number}> {
     return this.apiService.get_products('products/category/', slug, new HttpParams({fromObject:params}));
-    // return this.http.get(`${URL}/category/${slug}`, { params }).pipe(catchError(this.formatErrors));
-    // return this.http.get<Product>(`${URL}/category/${slug}`, {params});
   }
 
   create_product(product: Product): Observable<Product[]> {
