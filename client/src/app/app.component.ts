@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from "./core";
 
 @Component({
   selector: 'app-root',
@@ -6,6 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
-  title = 'Angular 13 CRUD example';
+export class AppComponent implements OnInit {
+  constructor(private UserService: UserService) {}
+
+  ngOnInit() {
+    this.UserService.populate();
+  }
 }

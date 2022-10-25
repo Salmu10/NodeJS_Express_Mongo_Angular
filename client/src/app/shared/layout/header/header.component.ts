@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { JwtService } from 'src/app/core';
 import { Router } from '@angular/router';
 import { UserService, User } from 'src/app/core';
@@ -18,7 +18,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private JwtService: JwtService,
     private UserService: UserService,
-    private router: Router
+    private router: Router,
+    private cd: ChangeDetectorRef,
   ) { }
 
   ngOnInit(): void {
@@ -27,6 +28,7 @@ export class HeaderComponent implements OnInit {
         if (userData.username) {
           this.current_user = userData;
           this.is_loged = true;
+          this.cd.markForCheck();
         } else {
           this.is_loged = false;
         }

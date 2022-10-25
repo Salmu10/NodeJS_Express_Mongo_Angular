@@ -52,11 +52,8 @@ export class AuthComponent implements OnInit {
   }
 
   submitForm() {
-
     this.isSubmitting = true;
     const credentials = this.authForm.value;
-    console.log(credentials);
-    
     if (this.authType === 'login') {
       this.UserService.login(credentials).subscribe({
         next: data => {

@@ -8,6 +8,7 @@ header {
     display: grid;
     gap: 10px;
     grid-template-columns: 1fr 1fr 1fr;
+    margin-right: 20px;
 }
 
 .header-container img {
@@ -24,7 +25,7 @@ nav {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     gap: 0px 15px;
-    margin-right: 20px;
+    /* margin-right: 20px; */
 }
 
 .header-container nav button {
@@ -33,7 +34,7 @@ nav {
     color: #333;
     background-color: mintcream;
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 18px;
     text-transform: uppercase;
     font-weight: bold;
 }

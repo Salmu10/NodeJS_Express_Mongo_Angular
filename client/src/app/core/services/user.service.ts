@@ -15,9 +15,7 @@ const URL = 'http://localhost:3000/api/user';
 })
 export class UserService {
   private currentUserSubject = new BehaviorSubject<User>({} as User);
-  public currentUser = this.currentUserSubject
-    .asObservable()
-    .pipe(distinctUntilChanged());
+  public currentUser = this.currentUserSubject.asObservable().pipe(distinctUntilChanged());
 
   private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
   public isAuthenticated = this.isAuthenticatedSubject.asObservable();
@@ -28,25 +26,19 @@ export class UserService {
     private http: HttpClient
   ) {}
 
-  // Verify JWT in localstorage with server & load user's info.
-  // This runs once on application startup.
-  populate() {
-    //Al iniciar la aplicación, si hay cualquier token, se comprueba aquí
-    //console.log(this.jwtService.getToken());
+  // Verify JWT in localstorage with server & load user's info. This runs once on application startup.
+  populate() {    
     // If JWT detected, attempt to get & store user's info
     if (this.jwtService.getToken()) {
       this.apiService.get('user').subscribe(
         (data) => this.setAuth(data.user),
         (err) => this.purgeAuth()
-
-        ///NO ENTRA PERQUÈ NO ESTÀ AUTORITZAT
-        // (data) => console.log(data),
-        // (err) =>  console.log(err)
       );
     } else {
       // Remove any potential remnants of previous auth states
       this.purgeAuth();
     }
+
   }
 
   setAuth(user: User) {
@@ -76,6 +68,17 @@ export class UserService {
       map((data) => {
         this.setAuth(data);
         return data;
+      })
+    );
+  }
+
+  // Update the user on the server (email, pass, etc)
+  update(user: any): Observable<User> {
+    return this.apiService.put('user/settings', { user }).pipe(
+      map((data) => {
+        // Update the currentUser observable
+        this.currentUserSubject.next(data.user);
+        return data.user;
       })
     );
   }

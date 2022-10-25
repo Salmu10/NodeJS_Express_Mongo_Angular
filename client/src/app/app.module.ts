@@ -3,9 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import { HeaderComponent } from './shared/layout/index';
-import { FooterComponent } from './shared/layout/index';
+import { CoreModule } from './core/core.module';
+import { FooterComponent, HeaderComponent, SharedModule } from './shared';
+// import { HeaderComponent } from './shared/layout/index';
+// import { FooterComponent } from './shared/layout/index';
 
 // Toastr
 import { ToastrModule } from 'ngx-toastr';
@@ -18,6 +19,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FooterComponent
   ],
   imports: [
+    CoreModule,
+    SharedModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,

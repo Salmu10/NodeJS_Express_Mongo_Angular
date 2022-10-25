@@ -27,7 +27,6 @@ exports.create_user = async (req, res) => {
 
             const new_user = await user.save();
             res.json(new_user.toAuthJSON());
-
         } else {
             res.json({type: "Error"});
             // return res.status(200).json({type: "Error", msg: "An error has ocurred"});
@@ -57,18 +56,43 @@ exports.login = async (req, res, next) => {
 }
 
 
-exports.get_user = async (req, res) => {
+exports.get_user = async (req, res, next) => {
+    User.findById(req.auth.id).then(function (user) {
+        if (!user) { 
+            return res.sendStatus(401); 
+        }
+        return res.json({ user: user.toAuthJSON() });
+    }).catch(next);
+}   
+
+exports.update_user = async (req, res) => {
     try {
         const id = req.auth.id;
         if (id) {
             const user = await User.findOne({ id: id });
             if (user) {
-                res.json(user.toAuthJSON());
+                if (req.body.user.username) {
+                    user.username = req.body.user.username;
+                }
+                if (req.body.user.email) {
+                    user.email = req.body.user.email;
+                }
+                if (req.body.user.password) {
+                    user.generatePassword(req.body.user.password);
+                }
+                if (req.body.user.bio) {
+                    user.bio = req.body.user.bio;
+                }
+                if (req.body.user.image) {
+                    user.image = req.body.user.image;
+                }
+                await user.save();
+                res.json('User updated');
             }
         } else {
-            res.status(404).send({message: `User not found!`});
+            res.status(404).send({message: "An error has ocurred"});
         }
-    } catch (error) {
+    } catch {
         res.status(500).send({message: "An error has ocurred"});
     }
 }
