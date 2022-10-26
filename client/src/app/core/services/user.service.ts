@@ -42,6 +42,7 @@ export class UserService {
   }
 
   setAuth(user: User) {
+    this.purgeAuth();
     // Save JWT sent from server in localstorage
     this.jwtService.saveToken(user.token);
     // Set current user data into observable
@@ -77,8 +78,8 @@ export class UserService {
     return this.apiService.put('user/settings', { user }).pipe(
       map((data) => {
         // Update the currentUser observable
-        this.currentUserSubject.next(data.user);
-        return data.user;
+        this.currentUserSubject.next(data);
+        return data;
       })
     );
   }

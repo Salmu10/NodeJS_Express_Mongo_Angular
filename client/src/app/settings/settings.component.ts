@@ -54,6 +54,10 @@ export class SettingsComponent implements OnInit {
     
     this.UserService.update(this.user).subscribe({
       next: data => {
+        this.ToastrService.success("Updated correctly");
+        setTimeout(() => {
+          this.router.navigate(['/home']);
+        }, 2000)
         console.log(data);
       },
       error: e => { console.log('error'); }

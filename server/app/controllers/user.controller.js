@@ -71,14 +71,9 @@ exports.update_user = async (req, res) => {
         if (id) {
             const user = await User.findOne({ id: id });
             if (user) {
-                if (req.body.user.username) {
-                    user.username = req.body.user.username;
-                }
-                if (req.body.user.email) {
-                    user.email = req.body.user.email;
-                }
+                // console.log(req.body.user.password);
                 if (req.body.user.password) {
-                    user.generatePassword(req.body.user.password);
+                    user.setPassword(req.body.user.password);
                 }
                 if (req.body.user.bio) {
                     user.bio = req.body.user.bio;
@@ -86,8 +81,8 @@ exports.update_user = async (req, res) => {
                 if (req.body.user.image) {
                     user.image = req.body.user.image;
                 }
-                await user.save();
-                res.json('User updated');
+                const user_updated = await user.save();
+                res.json(user_updated.toAuthJSON());
             }
         } else {
             res.status(404).send({message: "An error has ocurred"});

@@ -7,9 +7,16 @@
 
         <div *ngIf="listProducts" class="container_list_products">
             <div class="no_products" *ngIf="listProducts.length == 0">No products</div>
-            <app-product-details class="item" *ngFor="let product of listProducts" [product]="product"></app-product-details>
+            <div class="item" *ngFor="let product of listProducts">
+                <div class="product" *ngIf="product" [routerLink]="['/details/', product.slug]">
+                    <h3>{{product.name}}</h3>
+                    <div class="description">{{product.description}}</div>
+                    <div class="price">{{product.price}}€</div>
+                    <div class="like"><i id="icono" class="fa-solid fa-heart"></i></div>
+                </div>
+            </div>
         </div>
-
+        
     </div>
     <div class="pagination">
         <nav *ngIf="listProducts.length != 0 && totalPages.length != 1">

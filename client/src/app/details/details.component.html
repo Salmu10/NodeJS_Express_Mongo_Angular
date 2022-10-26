@@ -1,0 +1,10 @@
+<div>
+    <div *ngIf="!product">No product</div>
+    <div class="product" *ngIf="product">
+        <figure class="snip1423">
+            <!-- <img src="../../../assets/img/products/duke.jpg" alt=""> -->
+            <h3>{{product.name}}</h3>
+            <div class="price">{{product.price}}€</div>
+        </figure>
+    </div>
+</div>
