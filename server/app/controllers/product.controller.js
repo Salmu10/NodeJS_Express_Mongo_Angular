@@ -1,5 +1,17 @@
 const Product = require("../models/product.model.js");
 const Category = require("../models/category.model.js");
+const Comment = require("../models/comment.model.js");
+const User = require("../models/user.model.js");
+
+// Preload product
+// exports.preload_product = async (req, res, next, slug) => {
+//   const product = await Product.findOne({ slug: slug }).populate('author');
+//   if (!product) {
+//     return res.status(404).json({ msg: "Product not found" });
+//   }
+//   req.product = product;
+//   return next();
+// };
 
 // Create and Save a new Product
 exports.create_product = async (req, res) => {
@@ -167,3 +179,37 @@ exports.deleteAll_products = async (req, res) => {
     res.status(500).send({message: error.message || "Some error occurred while removing all products."});
   }
 }
+
+// Favorite a product
+exports.favorite = async (req, res) => {
+  try {
+    const product_slug = req.params.slug;
+    const user = await User.findOne({ id: req.auth.id });
+    const product = await Product.findOne({ slug: product_slug });
+    if (user && product) {
+      user.favorite(product);
+      res.json('Favorite added correctly');
+    } else {
+      res.status(404).json({msg: "Product not found"});
+    }
+  } catch (error) {
+    res.status(500).json({msg: "An error has ocurred"});
+  }
+};
+
+// Unfavorite a product
+exports.unfavorite = async (req, res) => {
+  try {
+    const product_slug = req.params.slug;
+    const user = await User.findOne({ id: req.auth.id });
+    const product = await Product.findOne({ slug: product_slug });
+    if (user && product) {
+      user.unfavorite(product);
+      res.json('Unfavorite added correctly');
+    } else {
+      res.status(404).json({msg: "Product not found"});
+    }
+  } catch (error) {
+    res.status(500).json({msg: "An error has ocurred"});
+  }
+};

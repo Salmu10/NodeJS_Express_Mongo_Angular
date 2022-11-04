@@ -7,8 +7,9 @@
         "name_cat": "Móviles",
         "state": "Seminuevo",
         "location": "Valencia",
-        "owner": "Rafa",
-        "product_image": "Iphone12.jpg"
+        "product_images": ["Iphone12.jpg", "Iphone12_2.jpg", "Iphone12_3.jpg"],
+        "author": "63567035032cb896ba410483",
+        "comments": []
     },
     {
         "name": "Iphone 13",
@@ -18,8 +19,9 @@
         "name_cat": "Móviles",
         "state": "Nuevo",
         "location": "Barcelona",
-        "owner": "Paco",
-        "product_image": "Iphone13.jpg"
+        "product_image": "Iphone13.jpg",
+        "author": "6357fae46c55311f93d7775e",
+        "comments": []
     },
     {
         "name": "Pantalón vaquero",
@@ -29,8 +31,9 @@
         "name_cat": "Ropa",
         "state": "Nuevo",
         "location": "Ontinyent",
-        "owner": "Amparo",
-        "product_image": "Vaquero.jpg"
+        "product_image": "Vaquero.jpg",
+        "author": "636509da72faa09d89faa43c",
+        "comments": []
     },
     {
         "name": "Sudadera roja",
@@ -40,8 +43,9 @@
         "name_cat": "Ropa",
         "state": "En buen estado",
         "location": "Ontinyent",
-        "owner": "Salva",
-        "product_image": "Sudadera_roja.jpg"
+        "product_image": "Sudadera_roja.jpg",
+        "author": "636509da72faa09d89faa43c",
+        "comments": []
     },
     {
         "name": "Chaqueta de cuero",
@@ -51,8 +55,9 @@
         "name_cat": "Ropa",
         "state": "Seminuevo",
         "location": "Ontinyent",
-        "owner": "Salva",
-        "product_image": "Chaqueta_cuero.jpg"
+        "product_image": "Chaqueta_cuero.jpg",
+        "author": "63567035032cb896ba410483",
+        "comments": []
     },
     {
         "name": "Camisa blanca",
@@ -62,8 +67,9 @@
         "name_cat": "Ropa",
         "state": "Nuevo",
         "location": "Ontinyent",
-        "owner": "Salva",
-        "product_image": "Camisa_blanca.jpg"
+        "product_image": "Camisa_blanca.jpg",
+        "author": "6357fae46c55311f93d7775e",
+        "comments": []
     },
     {
         "name": "Sudadera azul",
@@ -73,7 +79,8 @@
         "name_cat": "Ropa",
         "state": "Seminuevo",
         "location": "Ontinyent",
-        "owner": "Salva",
-        "product_image": "Sudadera_azul.jpg"
+        "product_image": "Sudadera_azul.jpg",
+        "author": "63567035032cb896ba410483",
+        "comments": []
     }
 ]

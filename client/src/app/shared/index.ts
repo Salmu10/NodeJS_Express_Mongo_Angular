@@ -7,3 +7,5 @@ export * from './carousel-items/carousel-items.component';
 export * from './carousel/carousel.component';
 export * from './layout/header/header.component';
 export * from './layout/footer/footer.component';
+export * from './comments/comments.component'
+export * from './show-authed.directive';

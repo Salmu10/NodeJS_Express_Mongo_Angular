@@ -1,6 +1,5 @@
 var mongoose = require('mongoose')
 var passport = require('passport');
-// const User = require("../models/user.model.js");
 var User = mongoose.model('User');
 
 exports.create_user = async (req, res) => {
@@ -57,19 +56,22 @@ exports.login = async (req, res, next) => {
 
 
 exports.get_user = async (req, res, next) => {
-    User.findById(req.auth.id).then(function (user) {
+    try {
+        const user = await User.findById(req.auth.id);
         if (!user) { 
             return res.sendStatus(401); 
         }
         return res.json({ user: user.toAuthJSON() });
-    }).catch(next);
+    } catch (error) {
+        res.status(500).json({msg: "An error has ocurred"});
+    }
 }   
 
 exports.update_user = async (req, res) => {
     try {
         const id = req.auth.id;
         if (id) {
-            const user = await User.findOne({ id: id });
+            const user = await User.findById(id);
             if (user) {
                 // console.log(req.body.user.password);
                 if (req.body.user.password) {

@@ -12,7 +12,9 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { CarouselComponent } from './carousel/carousel.component';
 import { CarouselItemsComponent } from './carousel-items/carousel-items.component';
 import { FiltersComponent } from './filters/filters.component';
+import { CommentsComponent } from './comments/comments.component';
 import { SearchComponent } from './search/search.component';
+import { ShowAuthedDirective } from './show-authed.directive';
 
 @NgModule({
     imports: [
@@ -30,7 +32,9 @@ import { SearchComponent } from './search/search.component';
         CarouselComponent,
         ProductsListComponent,
         ProductDetailsComponent,
+        ShowAuthedDirective,
         FiltersComponent,
+        CommentsComponent,
         SearchComponent
     ],
     exports: [
@@ -41,7 +45,9 @@ import { SearchComponent } from './search/search.component';
         ProductDetailsComponent,
         FormsModule,
         ReactiveFormsModule,
+        ShowAuthedDirective,
         FiltersComponent,
+        CommentsComponent,
         SearchComponent
     ],
 })
