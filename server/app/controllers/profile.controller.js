@@ -16,16 +16,17 @@ exports.param_username = async (req, res, next, username) => {
 
 exports.find_profile = async (req, res) => {
     if (req.auth) {
-        const user_auth = await User.findOne({ id: req.auth.id });
-        res.json(req.profile.toProfileJSON(user_auth));
+        const user_auth = await User.findById(req.auth.id);
+        // console.log(user_auth);
+        res.json(req.profile.toProfileJSONFor(user_auth));
     } else {
-        res.json(req.profile.toProfileJSON());
+        res.json(req.profile.toProfileJSONFor());
     }
 }
 
 exports.follow = async (req, res) => {
     try {
-        const user = await User.findOne({ id: req.auth.id });
+        const user = await User.findById(req.auth.id);
         if (!user) {
             return res.status(404).send({message: "Profile not found"});
         }
@@ -39,7 +40,7 @@ exports.follow = async (req, res) => {
 
 exports.unfollow = async (req, res) => {
     try {
-        const user = await User.findOne({ id: req.auth.id });
+        const user = await User.findById(req.auth.id);
         if (!user) {
             return res.status(404).send({message: "Profile not found"});
         }

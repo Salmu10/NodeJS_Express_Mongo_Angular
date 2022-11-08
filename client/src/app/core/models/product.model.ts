@@ -1,4 +1,6 @@
-export class Product {
+import { Profile } from './profile.model';
+
+export interface Product {
   slug?: String;
   name?: String;
   price?: Number;
@@ -7,6 +9,7 @@ export class Product {
   name_cat?: String;
   state?: String;
   location?: String;
-  owner?: String;
-  product_image?: [String];
+  images?: [String];
+  favorited?: boolean;
+  author: Profile;
 }

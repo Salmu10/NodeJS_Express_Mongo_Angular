@@ -34,15 +34,14 @@ const product_schema = mongoose.Schema({
         requiered: true
     },
     location: String,
-    owner: String,
-    product_image: [String],
+    product_images: [String],
     favorites: Number,
     favorited: {
         type: Boolean,
         default: false,
     },
     comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
-    author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+    author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 });
 
 product_schema.plugin(uniqueValidator, { msg: "already taken" });
@@ -93,8 +92,25 @@ product_schema.methods.toJSONFor = function(){
         name_cat: this.name_cat,
         state: this.state,
         location: this.location,
-        owner: this.owner,
+        author: this.author,
         favorites: this.favorites || 0,
+    };
+};
+
+product_schema.methods.toJSONAuthorFor = function(user){
+    return {
+        slug: this.slug,
+        name: this.name,
+        price: this.price,
+        description: this.description,
+        id_category: this.id_category,
+        name_cat: this.name_cat,
+        state: this.state,
+        location: this.location,
+        images: this.product_images,
+        favorites: this.favorites || 0,
+        favorited: user ? user.isFavorite(this._id) : false,
+        author: this.author.toProfileCommentJSON()
     };
 };
 

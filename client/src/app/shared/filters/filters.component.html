@@ -1,13 +1,13 @@
 <div class="container-filters">
   <label for='category' class="etiqueta">Categoria:</label>
     <select class="form-control input-lg mr-2" name="category" id="category" [(ngModel)]="cat_slug" (change)="filter_products()">
-      <option disabled selected value="">Categoria</option>
+      <option disabled selected value="">Categoría</option>
       <option *ngFor="let category of listCategories" [value]="category.slug">{{category.category_name}}</option>
     </select>
 
   <label for='etiquetas' class="etiqueta">Precio:</label>
-  <input class="form-control input-lg mr-2" type="number" id="price_min" [(ngModel)]="price_min" min="0" step="10" placeholder="Precio Minimo" (input)="filter_products()">
-  <input class="form-control input-lg mr-2" type="number" id="price_max" [(ngModel)]="price_max" min="0" step="10" placeholder="Precio Maximo" (input)="filter_products()">
+  <input class="form-control input-lg mr-2" type="number" id="price_min" [(ngModel)]="price_min" min="0" step="10" placeholder="Precio Mínimo" (input)="filter_products()">
+  <input class="form-control input-lg mr-2" type="number" id="price_max" [(ngModel)]="price_max" min="0" step="10" placeholder="Precio Máximo" (input)="filter_products()">
   
   <label for='etiquetas' class="etiqueta">Estado:</label>
   <ngx-multiselect id="state" [multiple]="true" [(ngModel)]="selected_state" [options]="options" (onItemClick)="filter_products()"

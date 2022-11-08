@@ -19,7 +19,7 @@
         "name_cat": "Móviles",
         "state": "Nuevo",
         "location": "Barcelona",
-        "product_image": "Iphone13.jpg",
+        "product_images": ["Iphone13.jpg", "Iphone13_2.jpg", "Iphone13_3.jpg"],
         "author": "6357fae46c55311f93d7775e",
         "comments": []
     },
@@ -31,7 +31,7 @@
         "name_cat": "Ropa",
         "state": "Nuevo",
         "location": "Ontinyent",
-        "product_image": "Vaquero.jpg",
+        "product_images": ["Vaquero.jpg", "Vaquero_2.jpg", "Vaquero_3.jpg"],
         "author": "636509da72faa09d89faa43c",
         "comments": []
     },
@@ -43,7 +43,7 @@
         "name_cat": "Ropa",
         "state": "En buen estado",
         "location": "Ontinyent",
-        "product_image": "Sudadera_roja.jpg",
+        "product_images": ["Sudadera_roja.jpg", "Sudadera_roja_2.jpg", "Sudadera_roja_3.jpg"],
         "author": "636509da72faa09d89faa43c",
         "comments": []
     },
@@ -55,7 +55,7 @@
         "name_cat": "Ropa",
         "state": "Seminuevo",
         "location": "Ontinyent",
-        "product_image": "Chaqueta_cuero.jpg",
+        "product_images": ["Chaqueta_cuero.jpg", "Chaqueta_cuero_2.jpg", "Chaqueta_cuero_3.jpg"],
         "author": "63567035032cb896ba410483",
         "comments": []
     },
@@ -67,7 +67,7 @@
         "name_cat": "Ropa",
         "state": "Nuevo",
         "location": "Ontinyent",
-        "product_image": "Camisa_blanca.jpg",
+        "product_images": ["Camisa_blanca.jpg", "Camisa_blanca_2.jpg", "Camisa_blanca_3.jpg"],
         "author": "6357fae46c55311f93d7775e",
         "comments": []
     },
@@ -79,7 +79,7 @@
         "name_cat": "Ropa",
         "state": "Seminuevo",
         "location": "Ontinyent",
-        "product_image": "Sudadera_azul.jpg",
+        "product_images": ["Sudadera_azul.jpg", "Sudadera_azul_2.jpg", "Sudadera_azul_3.jpg"],
         "author": "63567035032cb896ba410483",
         "comments": []
     }

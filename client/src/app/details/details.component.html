@@ -5,7 +5,11 @@
             <!-- <img src="../../../assets/img/products/duke.jpg" alt=""> -->
             <h3>{{product.name}}</h3>
             <div class="price">{{product.price}}€</div>
+            <div class="price">{{product.author.username}}</div>
         </figure>
+        <div class="product_like">
+            <app-favorite-button [product]="product"></app-favorite-button>
+        </div>
     </div>
 
     <div class="comments-section">

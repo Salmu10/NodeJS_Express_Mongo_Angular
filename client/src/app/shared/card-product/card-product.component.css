@@ -1,0 +1,26 @@
+.product {
+    display: flex;
+    justify-content: space-between;
+}
+
+.product_img img {
+    display: block;
+    width: 200px;
+    height: 200px;
+    border-radius: 15px 0px 0px 15px;
+}
+
+.product_info {
+    display: block;
+    width: 60%;
+    height: 200px;
+    padding: 10px;
+}
+
+.product_like {
+    display: block;
+    text-align: right;
+    width: 10%;
+    height: 200px;
+    padding: 20px;
+}

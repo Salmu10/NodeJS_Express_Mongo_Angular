@@ -1,0 +1,16 @@
+<div class="product" *ngIf="product">
+    <div class="product_img" [routerLink]="['/details/', product.slug]">
+        <img src="../../../assets/img/{{product.name_cat}}/{{images}}" alt=""/>
+    </div>
+    <div class="product_info" [routerLink]="['/details/', product.slug]">
+        <h3>{{product.name}}</h3>
+        <div class="description">{{product.description}}</div>
+        <!-- <div class="description">{{product.img_prod}}</div> -->
+        <div class="price">{{product.price}}€</div>
+        <div class="price">{{product.name_cat}}</div>
+        <div class="price">{{ product.author.username}}</div>
+    </div>
+    <div class="product_like">
+        <app-favorite-button [product]="product"></app-favorite-button>
+    </div>
+</div>

@@ -42,6 +42,10 @@ export class ProductService {
     return this.apiService.get_products('products/category/', slug, new HttpParams({fromObject:params}));
   }
 
+  products_user(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${URL}/user/products`);
+  }
+
   create_product(product: Product): Observable<Product[]> {
     return this.http.post<Product[]>(URL, product);
   }
@@ -56,6 +60,18 @@ export class ProductService {
   
   delete_all_products(): Observable<Product[]> {
     return this.http.delete<Product[]>(`${URL}`);
+  }
+
+  favorite(id: String): Observable<any> {
+    return this.http.post(`${URL}/${id}/favorite`, {})
+  }
+
+  unfavorite(id: String): Observable<any> {
+    return this.http.delete(`${URL}/${id}/favorite`)
+  }
+
+  fav_products_user(): Observable<Product[]> {    
+    return this.http.get<Product[]>(`${URL}/user/favorites/`);
   }
 
 }

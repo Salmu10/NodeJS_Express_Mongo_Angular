@@ -15,6 +15,11 @@ import { FiltersComponent } from './filters/filters.component';
 import { CommentsComponent } from './comments/comments.component';
 import { SearchComponent } from './search/search.component';
 import { ShowAuthedDirective } from './show-authed.directive';
+import { ProfileProductsComponent } from './profile-products/profile-products.component';
+import { ProfileFavoritesComponent } from './profile-favorites/profile-favorites.component';
+import { CardProductComponent } from './card-product/card-product.component';
+import { FollowButtonComponent } from './buttons/follow-button.component';
+import { FavoriteButtonComponent } from './buttons/favorite-button.component';
 
 @NgModule({
     imports: [
@@ -35,7 +40,12 @@ import { ShowAuthedDirective } from './show-authed.directive';
         ShowAuthedDirective,
         FiltersComponent,
         CommentsComponent,
-        SearchComponent
+        SearchComponent,
+        ProfileProductsComponent,
+        ProfileFavoritesComponent,
+        CardProductComponent,
+        FollowButtonComponent,
+        FavoriteButtonComponent
     ],
     exports: [
         CategoriesListComponent,
@@ -48,7 +58,12 @@ import { ShowAuthedDirective } from './show-authed.directive';
         ShowAuthedDirective,
         FiltersComponent,
         CommentsComponent,
-        SearchComponent
+        SearchComponent,
+        ProfileProductsComponent,
+        ProfileFavoritesComponent,
+        CardProductComponent,
+        FollowButtonComponent,
+        FavoriteButtonComponent
     ],
 })
 

@@ -7,6 +7,8 @@ export class Filters {
     location?: string;
     category?: string;
     state?: String[];
+    favorited?: string;
+    author?: string;
     
     constructor(
       limit?: number,
@@ -17,6 +19,8 @@ export class Filters {
       location?: string,
       category?: string,
       state?: [],
+      favorited?: string,
+      author?: string
     ) {
       this.limit = limit || 3;
       this.offset = offset || 0;
@@ -26,6 +30,8 @@ export class Filters {
       this.location = location;
       this.category = category;
       this.state = state;
+      this.favorited = favorited;
+      this.author = author;
     }
   
     public length(): number {
@@ -36,6 +42,8 @@ export class Filters {
       if (this.location) count++;
       if (this.category) count++;
       if (this.state) count++;
+      if (this.favorited) count++;
+      if (this.author) count++;
       return count;
     }
   }

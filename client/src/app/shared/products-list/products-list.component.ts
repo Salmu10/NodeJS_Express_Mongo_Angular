@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ProductService, Product, Filters, CategoryService, Category } from '../../core'
+import { ProductService, Product, Filters, CategoryService, Category, UserService, User } from '../../core'
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -15,6 +15,7 @@ export class ProductsListComponent implements OnInit {
   listCategories: Category[] = [];
   slug_Category: string | null;
   routeFilters: string | null;
+  currentUser: User = {} as User;
 
   offset: number = 0;
   limit: number = 3;
@@ -28,12 +29,12 @@ export class ProductsListComponent implements OnInit {
       this.query = filters;
       this.currentPage = 1;
       this.get_list_filtered(this.query);
-      console.log("hola filters");
     }
   }
 
   constructor(
     private ProductService: ProductService, 
+    private UserService: UserService, 
     private CategoryService: CategoryService, 
     private ActivatedRoute: ActivatedRoute,
     private Location: Location,
@@ -82,6 +83,7 @@ export class ProductsListComponent implements OnInit {
     this.ProductService.get_products(filters).subscribe(
       (data) => {
         this.listProducts = data.products;
+        console.log(data.products);
         this.totalPages = Array.from(new Array(Math.ceil(data.product_count/this.limit)), (val, index) => index + 1);
         },
       (error) => {

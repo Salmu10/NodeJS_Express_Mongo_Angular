@@ -1,13 +1,16 @@
 <header>
   <div class="header-container">
-    <img src="../../../../assets/img/Logo_sm.png" routerLink="home" alt="logo">
+    <div class="logo">
+      <img src="../../../../assets/img/saleback.png" routerLink="home" alt="logo">
+      <div class="title">
+        <h2>SALEBACK</h2>
+      </div>
+    </div>
     <nav>
       <button routerLink="home">Home</button>
       <button routerLink="shop">Shop</button>
-      <button routerLink="auth/login" *ngIf="!is_loged">Log in</button>
-      <button routerLink="settings" *ngIf="is_loged">Settings</button>
-      <!-- <button routerLink="profile/{{user.username}}" *ngIf="is_loged">Profile</button> -->
-      <button *ngIf="is_loged" (click)="logout()">Log out</button>
+      <button routerLink="auth/login" *appShowAuthed="false">Log in</button>
+      <button routerLink="profile/{{currentUser.username}}" *appShowAuthed="true">Profile</button>
     </nav>
   </div>
 </header>

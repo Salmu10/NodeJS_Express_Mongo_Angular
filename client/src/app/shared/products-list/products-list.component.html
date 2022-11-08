@@ -7,14 +7,25 @@
 
         <div *ngIf="listProducts" class="container_list_products">
             <div class="no_products" *ngIf="listProducts.length == 0">No products</div>
-            <div class="item" *ngFor="let product of listProducts">
-                <div class="product" *ngIf="product" [routerLink]="['/details/', product.slug]">
-                    <h3>{{product.name}}</h3>
-                    <div class="description">{{product.description}}</div>
-                    <div class="price">{{product.price}}€</div>
-                    <div class="like"><i id="icono" class="fa-solid fa-heart"></i></div>
-                </div>
-            </div>
+            <!-- <div class="item" *ngFor="let product of listProducts"> -->
+                <app-card-product class="item" *ngFor="let product of listProducts" [product]="product"></app-card-product>
+                <!-- <div class="product" *ngIf="product" [routerLink]="['/details/', product.slug]">
+                    <div class="product_img">
+                        <img src="../../../assets/img/{{product.name_cat}}/{{product.images[0]}}" alt=""/>
+                    </div>
+                    <div class="product_info">
+                        <h3>{{product.name}}</h3>
+                        <div class="description">{{product.description}}</div>
+                        <div class="description">{{product.images}}</div>
+                        <div class="price">{{product.price}}€</div>
+                        <div class="price">{{product.name_cat}}</div>
+                        <div class="price">{{ product.author.username}}</div>
+                    </div>
+                    <div class="product_like">
+                        <app-favorite-button [product]="product"></app-favorite-button>
+                    </div>
+                </div> -->
+            <!-- </div> -->
         </div>
         
     </div>

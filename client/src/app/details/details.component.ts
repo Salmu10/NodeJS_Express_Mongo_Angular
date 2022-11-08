@@ -46,6 +46,7 @@ export class DetailsComponent implements OnInit {
            this.ProductService.get_product(this.slug).subscribe({
                 next: data => {
                     this.product = data;
+                    // console.log(this.product);
                     // this.images = data.product_image;
                     /* console.log(this.images); */
                     // Load the comments on this article
@@ -68,7 +69,7 @@ export class DetailsComponent implements OnInit {
             this.user_image = userData.image;
             // console.log(this.product);
             // console.log(this.currentUser.username)
-            // this.canModify = String(this.currentUser.username) === String(this.product.author?.username);
+            this.canModify = String(this.currentUser.username) === String(this.product.author?.username);
             this.cd.markForCheck();
         });
     }

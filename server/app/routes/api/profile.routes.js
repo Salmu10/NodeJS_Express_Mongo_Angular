@@ -7,6 +7,6 @@ const profile = require('../../controllers/profile.controller.js');
 router.param('username', profile.param_username);
 router.get('/:username', auth.optional, profile.find_profile);
 router.post('/:username/follow', auth.required, profile.follow);
-router.delete('/:username/follow', profile.unfollow);
+router.delete('/:username/follow', auth.required, profile.unfollow);
 
 module.exports = router;

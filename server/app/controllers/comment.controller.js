@@ -21,7 +21,7 @@ exports.get_comment = async (req, res, next) => {
         const product = req.product;
         const get_product = await product.populate({ path: 'comments', populate: { path: 'author' } });
         return res.json({comments: get_product.comments.map(function (comment) { 
-            return comment.toJSONFor(comment.author);}),
+            return comment.toJSONFor();}),
         });
     } catch (error) {
         res.status(500).json({msg: "An error has ocurred"});

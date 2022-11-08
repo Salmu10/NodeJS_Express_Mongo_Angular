@@ -19,7 +19,7 @@ const user_schema = mongoose.Schema (
     bio: String,
     hash: String,
     salt: String,
-    favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }],
+    favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Products' }],
     following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     followers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   }, { timestamps: true }
@@ -61,6 +61,12 @@ user_schema.methods.unfavorite = function (id) {
   return this.save();
 };
 
+user_schema.methods.isFavorite = function (id) {
+  return this.favorites.some(function (favoriteId) {
+    return favoriteId.toString() === id.toString();
+  });
+};
+
 user_schema.methods.follow = function (id) {
   if (this.following.indexOf(id) === -1) {
     this.following.push(id);
@@ -75,7 +81,7 @@ user_schema.methods.unfollow = function (id) {
 
 user_schema.methods.isFollowing = function (id) {
   return this.following.some(function (followId) {
-      return followId.toString() === id.toString();
+    return followId.toString() === id.toString();
   });
 };
   
@@ -92,6 +98,7 @@ user_schema.methods.toAuthJSON = function(){
 user_schema.methods.toProfileJSONFor = function (user) {
   return {
     username: this.username,
+    email: this.email,
     bio: this.bio,
     image: this.image || 'https://avatars.dicebear.com/api/personas/' + this.username + '.svg',
     favorites: this.favorites,
