@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Category, Product, Filters } from '../../core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -29,7 +29,8 @@ export class FiltersComponent {
 
   constructor(
     private ActivatedRoute: ActivatedRoute, 
-    private Location: Location
+    private Location: Location,
+    private Router: Router
   ) {
   }
   
@@ -114,6 +115,7 @@ export class FiltersComponent {
     this.price_max = undefined;
     this.selected_state = [];
     this.filter_products();
+    setTimeout(() => { this.Router.navigate(['/shop']); }, 200);
   }
 
   private checkTime(filters: Filters) {
