@@ -143,7 +143,7 @@ exports.find_products_user = async (req, res) => {
   try {
     const user = await User.findById(req.auth.id);
     if (user) {
-      const products = await Product.find({ author: user._id }).populate("author");
+      const products = await Product.find({ author: user._id }).sort("name").populate("author");
       if (!products) {
         res.status(404).send({message: `Product not found!`});
       } else {
@@ -248,7 +248,7 @@ exports.unfavorite = async (req, res) => {
 exports.get_favorites = async (req, res) => {
   try {
     const user = await User.findById(req.auth.id);
-    const products = await Product.find({_id: user.favorites}).populate("author");
+    const products = await Product.find({_id: user.favorites}).sort("name").populate("author");
     if (products) {
       return res.json(products.map(product => product.toJSONAuthorFor(user)));
     } else {
