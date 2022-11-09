@@ -13,11 +13,11 @@ h1 {
 
 .user-info {
     display: grid;
-    width: 50%;
+    width: 90%;
     margin-left: 5%;
-    grid-template-columns: 0.5fr 1fr;
+    margin-right: 5%;
+    grid-template-columns: 15% 20% 65%;
     grid-template-rows: repeat(2, 1fr);
-    /* grid-template-columns: 1fr 1fr; */
     align-items: center;
 }
 
@@ -53,16 +53,26 @@ h1 {
     grid-row-end: 3;
 }
 
-.profile-settings {
-    position: absolute;
-    top: 25%;
-    right: 5%;
+.profile-buttons {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    justify-content: flex-end;
 }
 
+.profile-settings {
+    padding: 10px;
+    grid-row-start: 1;
+    grid-row-end: 2;
+} 
+
 .profile-logout {
-    position: absolute;
-    top: 35%;
-    right: 5%;
+    padding: 10px;
+    grid-row-start: 2;
+    grid-row-end: 3;
 }
 
 .settings-btn, .logout-btn {
@@ -81,4 +91,15 @@ h1 {
     text-decoration: none;
     background-color: #016bdb;
 }
+
+.profile-follow, .user_products {
+    margin-left: 5%;
+}
+
+/* .user_products, .profile-follow {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+} */
 

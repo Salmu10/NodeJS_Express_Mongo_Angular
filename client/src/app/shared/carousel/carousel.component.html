@@ -17,3 +17,22 @@
         <i class="fa-sharp fa-solid fa-angles-right btn-next-carousel icon-next" (click)="Next()"></i>
     </div>
 </div>
+
+<div *ngIf="images_product" class="carousel-container">
+    <img *ngFor="let img_product of images_product; let i = index" src="../../../assets/img/{{img_product}}" 
+    [ngClass]="{'image-active': selectIndex_product_img === i}">
+
+     <div *ngIf="indicators" class="carousel-dot-container">
+        <span *ngFor="let dot of images_product; let i = index" class="dot"
+        [ngClass]="{'active':selectIndex_product_img === i}"
+        (click)="selectImage(i)"></span>
+    </div>
+
+    <div *ngIf="controls" class="btn-carousel button-prev">
+        <i class="fa-sharp fa-solid fa-angle-left btn-prev-carousel icon-prev" (click)="Prev()"></i>
+    </div>
+
+    <div *ngIf="controls" class="btn-carousel button-next">
+        <i class="fa-sharp fa-solid fa-angle-right btn-next-carousel icon-next" (click)="Next()"></i>
+    </div>
+</div>

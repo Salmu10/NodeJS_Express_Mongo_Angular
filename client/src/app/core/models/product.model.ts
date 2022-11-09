@@ -9,7 +9,7 @@ export interface Product {
   name_cat?: String;
   state?: String;
   location?: String;
-  images?: [String];
+  images?: String[];
   favorited?: boolean;
   author: Profile;
 }

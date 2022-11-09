@@ -83,9 +83,8 @@ export class ProductsListComponent implements OnInit {
     this.ProductService.get_products(filters).subscribe(
       (data) => {
         this.listProducts = data.products;
-        console.log(data.products);
         this.totalPages = Array.from(new Array(Math.ceil(data.product_count/this.limit)), (val, index) => index + 1);
-        },
+      },
       (error) => {
         console.log(error);
       }

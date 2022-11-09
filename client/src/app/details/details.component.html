@@ -1,12 +1,24 @@
-<div>
+<div class="details_page">
     <div *ngIf="!product">No product</div>
     <div class="product" *ngIf="product">
-        <figure class="snip1423">
-            <!-- <img src="../../../assets/img/products/duke.jpg" alt=""> -->
-            <h3>{{product.name}}</h3>
-            <div class="price">{{product.price}}€</div>
-            <div class="price">{{product.author.username}}</div>
-        </figure>
+        <div class="product-image">
+            <app-carousel [images_product]="images" [autoSlide]="true"></app-carousel>
+        </div>
+        <div class="product-info">
+            <div class="title">
+                <h3>{{product.name}}</h3>
+                <p class="price">Price: {{product.price}} €</p>
+            </div>
+            <div class="product-bio">
+                <div class="description"><strong>Description: </strong>{{product.description}}.</div>
+                <div class="category"><strong>Category: </strong>{{product.name_cat}}.</div>
+                <div class="state"><strong>State: </strong>{{product.state}}.</div>
+            </div>
+            <div class="author" [routerLink]="['/profile', product.author.username]">
+                <img class="author-avatar" src="{{product.author.image}}">
+                <p>{{product.author.username}}</p>
+            </div>
+        </div>
         <div class="product_like">
             <app-favorite-button [product]="product"></app-favorite-button>
         </div>
@@ -24,7 +36,7 @@
                         <textarea class="comment-textarea" name="enter-comment" placeholder="Write a comment..." [formControl]="commentControl"></textarea>
                         <div class="comment-actions">
                             <button class="post" type="submit">COMMENT</button>
-                            <button class="cancel" type="button">CANCEL</button>
+                            <button class="cancel" type="button" (click)="empty_comment()">CANCEL</button>
                         </div>
                     </fieldset>
                 </div>

@@ -10,12 +10,14 @@ import { Category } from '../../core'
 export class CarouselComponent implements OnInit {
 
   @Input() category: Category[] = [];
+  @Input() images_product: String[] = [];
   @Input() indicators = true;
   @Input() controls = true;
   @Input() autoSlide = false;
   @Input() slideInterval = 5000;
 
   selectIndex = 0;
+  selectIndex_product_img = 0;
 
   ngOnInit(): void {
     if (this.autoSlide) {
@@ -31,6 +33,7 @@ export class CarouselComponent implements OnInit {
 
   selectImage(index: number): void {
     this.selectIndex = index;
+    this.selectIndex_product_img = index;
   }
 
   Prev(): void {
@@ -39,6 +42,12 @@ export class CarouselComponent implements OnInit {
     } else {
       this.selectIndex--;
     }
+
+    if (this.selectIndex_product_img === 0) {
+      this.selectIndex_product_img = this.images_product.length - 1;
+    } else {
+      this.selectIndex_product_img--;
+    }
   }
 
   Next(): void {
@@ -46,6 +55,12 @@ export class CarouselComponent implements OnInit {
       this.selectIndex = 0;
     } else {
       this.selectIndex++;
+    }
+
+    if (this.selectIndex_product_img === this.images_product.length - 1) {
+      this.selectIndex_product_img = 0;
+    } else {
+      this.selectIndex_product_img++;
     }
   }
 }

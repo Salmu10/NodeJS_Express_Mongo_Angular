@@ -14,6 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 export class DetailsComponent implements OnInit {
 
     product: Product;
+    images: String[] = [];
     slug: string | null;
 
     currentUser: User;
@@ -41,14 +42,11 @@ export class DetailsComponent implements OnInit {
     }
 
     get_product() {
-        /*  console.log(this.slug); */
         if (typeof this.slug === 'string') {
            this.ProductService.get_product(this.slug).subscribe({
                 next: data => {
                     this.product = data;
-                    // console.log(this.product);
-                    // this.images = data.product_image;
-                    /* console.log(this.images); */
+                    this.images = data.images!;
                     // Load the comments on this article
                     this.get_comments();
                     this.get_user_author();
@@ -67,8 +65,6 @@ export class DetailsComponent implements OnInit {
         this.UserService.currentUser.subscribe((userData: User) => {
             this.currentUser = userData;
             this.user_image = userData.image;
-            // console.log(this.product);
-            // console.log(this.currentUser.username)
             this.canModify = String(this.currentUser.username) === String(this.product.author?.username);
             this.cd.markForCheck();
         });
@@ -122,5 +118,11 @@ export class DetailsComponent implements OnInit {
                 }
             })
         }
+    }
+
+    empty_comment() {
+        this.commentControl.reset('');
+        this.isSubmitting = false;
+        this.cd.markForCheck();
     }
 }

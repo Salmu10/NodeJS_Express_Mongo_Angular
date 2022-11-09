@@ -63,10 +63,17 @@
     right: -30%;
 }
 
+.button-prev{
+    left: -10%;
+}
+
+.button-next{
+    right: -10%;
+}
+
 .btn-prev-carousel, .btn-next-carousel {
     color: #333;
     font-size: 40px;
-    /* transition: all 0.15s ease; */
 }
 
 .btn-prev-carousel:hover, .btn-next-carousel:hover {
