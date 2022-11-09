@@ -18,8 +18,7 @@ import { ShowAuthedDirective } from './show-authed.directive';
 import { ProfileProductsComponent } from './profile-products/profile-products.component';
 import { ProfileFavoritesComponent } from './profile-favorites/profile-favorites.component';
 import { CardProductComponent } from './card-product/card-product.component';
-import { FollowButtonComponent } from './buttons/follow-button.component';
-import { FavoriteButtonComponent } from './buttons/favorite-button.component';
+import { FollowButtonComponent, FavoriteButtonComponent } from './buttons';
 
 @NgModule({
     imports: [
