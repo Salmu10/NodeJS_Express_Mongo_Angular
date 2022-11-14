@@ -63,7 +63,7 @@ al producto y, en caso de que sea suyo, eliminarlo. También hay una opción de 
 - Angular V13<br>
 - MongoDB</p>
 
-<h3>Backend</h3>
+<h3>BACKEND</h3>
 <ul>
   <li>cd server</li>
   <li>npm install</li>
@@ -75,20 +75,6 @@ al producto y, en caso de que sea suyo, eliminarlo. También hay una opción de 
   <li>cd cliente</li>
   <li>npm install</li>
   <li>npm start</li>
-</ul>
-
-<hr>
-
-<h2>TECNOLOGÍAS EMPLEADAS</h2>
-
-<p>Lista de tecnologías utilizadas en este proyecto:</p>
-
-<ul>
-
-  <li><a href="https://www.php.net/manual/es/intro-whatis.php">PHP:</a> Version 8.0.13</li>
-  <li><a href="https://developer.mozilla.org/es/docs/Web/JavaScript">JavaScript</a></li>
-  <li><a href="https://angularjs.org/">AngularJS</a></li>
-  <li><a href="https://www.phpmyadmin.net/">PhpMyAdmin</a></li>
 </ul>
 
 <hr>
