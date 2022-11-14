@@ -64,7 +64,7 @@ al producto y, en caso de que sea suyo, eliminarlo. También hay una opción de 
 - MongoDB</p>
 
 <h3>BACKEND</h3>
-<o>
+<ol>
   <li>cd server</li>
   <li>npm install</li>
   <li>npm run dev</li>
@@ -76,6 +76,7 @@ al producto y, en caso de que sea suyo, eliminarlo. También hay una opción de 
   <li>npm install</li>
   <li>npm start</li>
 </ol>
+
 
 <hr>
 
