@@ -63,13 +63,11 @@ al producto y, en caso de que sea suyo, eliminarlo. También hay una opción de 
 - Angular V13<br>
 - MongoDB</p>
 
-<p>Para arrancar el proyecto:</p><br>
 <h3>Backend</h3>
 <ul>
   <li>cd server</li>
   <li>npm install</li>
   <li>npm run dev</li>
-  <li></li>
 </ul>
 
 <h3>FRONTEND</h3>
@@ -77,7 +75,6 @@ al producto y, en caso de que sea suyo, eliminarlo. También hay una opción de 
   <li>cd cliente</li>
   <li>npm install</li>
   <li>npm start</li>
-  <li></li>
 </ul>
 
 <hr>
