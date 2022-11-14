@@ -64,18 +64,18 @@ al producto y, en caso de que sea suyo, eliminarlo. También hay una opción de 
 - MongoDB</p>
 
 <h3>BACKEND</h3>
-<ul>
+<o>
   <li>cd server</li>
   <li>npm install</li>
   <li>npm run dev</li>
-</ul>
+</ol>
 
 <h3>FRONTEND</h3>
-<ul>
+<ol>
   <li>cd cliente</li>
   <li>npm install</li>
   <li>npm start</li>
-</ul>
+</ol>
 
 <hr>
 
