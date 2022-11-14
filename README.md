@@ -72,7 +72,7 @@ al producto y, en caso de que sea suyo, eliminarlo. También hay una opción de 
 
 <h3>FRONTEND</h3>
 <ol>
-  <li>cd cliente</li>
+  <li>cd client</li>
   <li>npm install</li>
   <li>npm start</li>
 </ol>
