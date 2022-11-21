@@ -8,7 +8,7 @@ import { Filters, Profile } from '../../core';
 @Component({
   selector: 'app-profile-favorites',
   templateUrl: './profile-favorites.component.html',
-  styleUrls: ['./profile-favorites.component.css']
+  styleUrls: ['./profile-favorites.component.scss']
 })
 
 export class ProfileFavoritesComponent implements OnInit {

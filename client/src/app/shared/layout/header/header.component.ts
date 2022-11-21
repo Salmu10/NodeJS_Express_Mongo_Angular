@@ -6,9 +6,13 @@ import { User, UserService } from '../../../core';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.scss']
 })
+
 export class HeaderComponent implements OnInit {
+
+  bars: Boolean = false;
+
   constructor(
     private userService: UserService,
     private cd: ChangeDetectorRef,
@@ -29,6 +33,14 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.userService.purgeAuth();
     this.router.navigateByUrl('/');
+  }
+
+  nav_bars() {
+    if (this.bars == false) {
+      this.bars = true;
+    } else {
+      this.bars = false;
+    }
   }
 
 }

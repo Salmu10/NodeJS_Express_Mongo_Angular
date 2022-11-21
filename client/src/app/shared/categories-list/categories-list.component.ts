@@ -4,7 +4,7 @@ import { CategoryService, Category } from '../../core'
 @Component({
   selector: 'app-categories-list',
   templateUrl: './categories-list.component.html',
-  styleUrls: ['./categories-list.component.css']
+  styleUrls: ['./categories-list.component.scss']
 })
 
 export class CategoriesListComponent implements OnInit {
@@ -16,14 +16,7 @@ export class CategoriesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCategories();
-    // this.categories_list();
   }
-
-  // categories_list() {
-  //   this.CategoryService.all_categories().subscribe((data) => {
-  //     this.categories = data;
-  //   })
-  // }
 
   getRequestParams(offset: number, limit: number): any {
     let params: any = {};

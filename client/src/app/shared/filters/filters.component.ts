@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html',
-  styleUrls: ['./filters.component.css'],
+  styleUrls: ['./filters.component.scss'],
 })
 
 export class FiltersComponent {

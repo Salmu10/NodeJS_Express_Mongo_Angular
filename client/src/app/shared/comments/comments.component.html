@@ -5,5 +5,5 @@
     <h2 class="comment-title">Author: {{ comment.author.username }}</h2>
     <p class="comment-text">{{ comment.body }}</p>
     <p class="comment-time-stamp">{{ comment.createdAt | date: 'short'}}</p>
-    <div class="comment-delete-icon" *appShowAuthed="true"><i class="fa-solid fa-trash-can fa-2x" (click)="deleteClicked()"></i></div>
+    <div class="comment-delete-icon" *appShowAuthed="true"><i class="fa-solid fa-trash-can" (click)="deleteClicked()"></i></div>
 </div>
