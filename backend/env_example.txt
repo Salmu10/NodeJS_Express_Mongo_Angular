@@ -1,5 +1,0 @@
-PORT=3000
-MONGO_URI=mongodb://root:root@mongo_db:27017/wallapop_salva?authSource=admin
-CORSURL=http://localhost:4200
-NODE_ENV=production
-SECRET=thisismygoodside
