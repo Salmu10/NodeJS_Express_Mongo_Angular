@@ -89,5 +89,5 @@ Además, tendremos que añadir las variables de entorno necesarias para su funci
   <li>Frontend con loadbalancer activado: <a href="http://localhost:8080">http://localhost:8080.</a></li>
   <li>Backend con loadbalancer activado: <a href="http://localhost:8080/api/products">http://localhost:8080/api/products.</a></li>
   <li>Panel de Prometheus: <a href="http://localhost:9090">http://localhost:9090.</a></li>
-  <li>Panel de Grafana: <a href="http://localhost:8080/api/products">http://localhost:8080/api/products.</a></li>
+  <li>Panel de Grafana: <a href="http://localhost:3500">http://localhost:3500.</a></li>
 </ul>
