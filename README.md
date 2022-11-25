@@ -63,38 +63,13 @@ imagen que utilizará, el puerto que usará y que arrancará después del conten
 
 <h2>PUESTA EN MARCHA</h2>
 
-<p>Es necesario crear el fichero .env en la carpeta de servidor.</p>
-<p>Tener instalado las siguientes herramientas:<br>
+<p>Para arrancar y los contenedores, desde la carpeta del proyecto, ejecutaremos el comando "docker compose up --build".</p>
 
-- NodeJS V16.17.0<br>
-- Angular V13<br>
-- MongoDB</p>
-
-<h3>BACKEND</h3>
-<ol>
-  <li>cd server</li>
-  <li>npm install</li>
-  <li>npm run dev</li>
-</ol>
-
-<h3>FRONTEND</h3>
-<ol>
-  <li>cd client</li>
-  <li>npm install</li>
-  <li>npm start</li>
-</ol>
-
-
-<hr>
-
-<h2>LIBRERÍAS</h2>
-
-<p>Lista de librerías utilizadas en este proyecto:</p>
-
+<h3>Lista de URLs</h3>
 <ul>
-  <li><a href="https://codeseven.github.io/toastr/">Toastr</a></li>
-  <li><a href="https://fontawesome.com/">Font Awesome</a></li>
-  <li><a href="https://www.flaticon.es/">Flaticon</a></li>
-  <li><a href="https://avatars.dicebear.com/">DiceBear Avatars</a></li>
+  <li>Proyecto General: <a href="http://localhost:4200">http://localhost:4200</a></li>
+  <li>Servidor: <a href="http://localhost:3000/api/products">http://localhost:3000/api/products</a></li>
+  <li>Panel de mongo-express: <a href="http://localhost:8081">http://localhost:8081</a></li>
+  <li>Frontend con loadbalancer activado: <a href="http://localhost:8080">http://localhost:8080</a></li>
+  <li>Backend con loadbalancer activado: <a href="http://localhost:8080/api/products">http://localhost:8080/api/products</a></li>
 </ul>
- 
