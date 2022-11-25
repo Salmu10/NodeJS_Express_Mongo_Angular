@@ -34,8 +34,7 @@ ejecutará el comando que inicia el servidor. Además, tendrá que estar en la m
 
 <h3>CONTENEDOR FRONTEND</h3>
 
-<p>Como en el contenedor anterior, en el contenedor de frontend también tendremos que crear un dockerfile con dos stages configurando el 
-contnedor. Esta vez, exponemos el puerto 4200.</p>
+<p>Como en el contenedor anterior, en el contenedor de frontend también tendremos que crear un dockerfile con dos stages configurando el contnedor. Esta vez, exponemos el puerto 4200.</p>
 
 <img src="images/frontend_1.png">
 
@@ -45,30 +44,22 @@ en la misma red que el contenedor que el resto de contenedores.</p>
 
 <img src="images/frontend_2.png">
 
-<ul>
-  <li>Register</li>
-  <li>Login</li>
-  <li>Profile</li>
-  <li>Settings</li>
-</ul>
-<p>Además el login tiene un token mediante JWT en el que va verificando durante el uso de la web si hay<br>
-un usuario conectado.</p>
- 
-<h3>Shop</h3>
-<p>Este es el módulo más importante de toda la web, en el se puede ver la lista de productos del que dispone la<br>
-web y además se puede filtrar esta lista y la lista se encuentra paginada. También puede entrar en el<br>
-producto deseado y ver una lista mas detallada de este, además, el usuario puede añadir algún comentario<br>
-al producto y, en caso de que sea suyo, eliminarlo. También hay una opción de marcado de favoritos de<br> cada producto si el usuario se encuentra logeado.</p>
-<ul>
-  <li>Lista de productos</li>
-  <li>Filtros</li>
-  <li>Detalles del producto</li>
-  <li>Likes</li>
-  <li>Paginación</li>
-  <li>Comentarios</li>
-</ul>
+<h3>CONTENEDOR MONGO-EXPRESS</h3>
 
-<hr>
+<p>Este contenedor nos permitirá administrar la base de datos de mongo. En el solo tendremos que asignar la
+imagen que utilizará, el puerto que usará y que arrancará después del contenedor de mongo. Además, de añadirlo a la misma red que el resto de contenedores.</p>
+
+<img src="images/mongo_express_1.png">
+
+<p>En un archivo aparte deberemos añadir las variables de entorno que necesita el contenedor para funcionar, este archivo será un .env y estará en la carpeta general. Se llamará a este archivo desde el docker-compose.</p>
+
+<img src="images/mongo_express_2.png">
+
+<h3>CONTENEDOR LOADBALANCER</h3>
+
+<p>El siguiente contenedor nos permitirá implementar un sistema de balanceo de carga/proxy en nuestro sistema. Partirá de la imagen oficial de nginx y asociará un fichero de configuración de nginx que se encontrará en la carpeta de loadbalancer con el mismo fichero de la carpeta /etc/nginx/ de la imagen lo que permitirá implementar el balanceador de carga. Además, el contenedor ejecutará el comando "nginx -g daemon off" nada más arrancar.</p>
+
+<img src="images/loadbalancer.png">
 
 <h2>PUESTA EN MARCHA</h2>
 
