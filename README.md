@@ -74,4 +74,6 @@ imagen que utilizará, el puerto que usará y que arrancará después del conten
   <li>Panel de mongo-express: <a href="http://localhost:8081">http://localhost:8081.</a></li>
   <li>Frontend con loadbalancer activado: <a href="http://localhost:8080">http://localhost:8080.</a></li>
   <li>Backend con loadbalancer activado: <a href="http://localhost:8080/api/products">http://localhost:8080/api/products.</a></li>
+  <li>Panel de Prometheus: <a href="http://localhost:9090">http://localhost:9090.</a></li>
+  <li>Panel de Grafana: <a href="http://localhost:8080/api/products">http://localhost:8080/api/products.</a></li>
 </ul>
