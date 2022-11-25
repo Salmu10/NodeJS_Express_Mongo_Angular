@@ -7,37 +7,44 @@ Un proyecto realizado por el alumno <a href="https://github.com/Salmu10">Salva M
 Este proyecto trata sobre una página web de venta de productos de segunda mano, al estilo wallapop,<br> sobre la cual se pueden realizar distintas funciones.</p>
 <hr>
   
-<h2>CONTENEDOR MONGO</h2>
+<h3>CONTENEDOR MONGO</h3>
  
-<p style="text-align: justify">Para el contenedor de la base de datos, que en este caso es mongodb, primeramente, hacemos 
+<p>Para el contenedor de la base de datos, que en este caso es mongodb, primeramente, hacemos 
 una copia de la base de datos usada en el proyecto, para ello, usamos el comando "mongodump -d <database name> -o <target directory>"
 guardaremos esta carpeta de nuestra base de datos en una carpeta llamada "dump" que a su vez se encontrará en la carpeta de mongo.
 Además, crearemos un fichero .sh con el comando "mongorestore -d <database name> /dump" para insertar nuestra base de datos en el 
 contenedor de mongo.<p>
 
-<p style="text-align: justify">Solo nos quedará terminar de configurar el contenedor de mongo, agregando la red (practica_net), los puertos, etc.
+<p>Solo nos quedará terminar de configurar el contenedor de mongo, agregando la red (practica_net), los puertos, etc.
 El resultado será parecido al siguiente:</p>
 
 <img src="images/mongo_1.png">
 
-<h3>Home</h3>
-<p>En la sección del Home, el usuario tiene su primera impresión de la web, el cual puede observar<br>
-un carrusel de las categorias que dispone la página, y filtar por ellas los productos.<br>
-Además, contiene un infinite scroll de la lista de las categorias de la empresa.<br>
-Ambas opciones, tienen un salto al módulo de shop aplicando el filtro de la categoría seleccionada</p>
-<ul>
-  <li>Carrusel de categorias</li>
-  <li>Infinite scroll de categorías</li>
-</ul>
+<h3>CONTENEDOR BACKEND</h3>
 
-<h3>Search</h3>
-<p>El módulo de search, esta presente tanto en el home como en el shop de la aplicación. En él, se puede<br>
-buscar el producto deseado por su nombre. Este motor de búsqueda, redirige a la sección del shop,<br>
-aplicando el filtro deseado.</p>
+<p>Para el contenedor de backend, primero, deberemos crear un fichero dockerfile dentro de la carperta de backend en el qual, partiendo 
+de una imagen "node:19-alpine", haremos dos stages estructurando el contenedor y exponiendo el pureto 3000.</p>
 
-<h3>Login</h3>
-<p>La aplicación web, consta también, de un módulo de login donde el usuario puede crear una cuenta, e<br> iniciar sesión con ella. Consta además, de una sección de perfil, donde el usuario puede ver sus<br> productos y los productos a los que les ha dado like. También tiene una opción de ajustes, donde puede<br>
-puede modificar la información de su perfil.</p>
+<img src="images/backend_1.png">
+
+<p>Una vez creado el dockerfile, crearemos el contenedor en el docker-compose.yml, el cual se iniciará después del contenedor de mongo y 
+ejecutará el comando que inicia el servidor. Además, tendrá que estar en la misma red que el contenedor de mongo y el resto de contenedores.</p>
+
+<img src="images/backend_2.png">
+
+<h3>CONTENEDOR FRONTEND</h3>
+
+<p>Como en el contenedor anterior, en el contenedor de frontend también tendremos que crear un dockerfile con dos stages configurando el 
+contnedor. Esta vez, exponemos el puerto 4200.</p>
+
+<img src="images/frontend_1.png">
+
+<p>Una vez creado el dockerfile, crearemos el contenedor en el docker-compose.yml, el cual se iniciará después del contenedor de backend,
+esta vez, el comando de arranque lo ejecuta el dockerfile así que no hará falta ponerlo en el docker-compose.yml. Además, tendrá que estar 
+en la misma red que el contenedor que el resto de contenedores.</p>
+
+<img src="images/frontend_2.png">
+
 <ul>
   <li>Register</li>
   <li>Login</li>

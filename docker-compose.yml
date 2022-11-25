@@ -1,7 +1,5 @@
 version: '3'
 services:
-
-
   mongo_db:
     image: mongo:latest
     container_name: mongo_container
@@ -13,8 +11,6 @@ services:
       - ./mongo/import.sh:/docker-entrypoint-initdb.d/import.sh
     networks:
       - practica_net
-
-
   backend:
     build: ./backend
     container_name: backend_container
