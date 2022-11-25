@@ -6,15 +6,11 @@ services:
     restart: always
     ports:
       - "27017:27017"
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
-      MONGO_INITDB_DATABASE: wallapop_salva
     volumes:
       - ./mongo/dump/wallapop_salva:/dump
       - ./mongo/import.sh:/docker-entrypoint-initdb.d/import.sh
     networks:
-      - app
+      - practica_net
   backend:
     build: ./backend
     container_name: backend_container
@@ -25,7 +21,7 @@ services:
       - "3000:3000"
     command: 'npm run start'
     networks:
-      - app
+      - practica_net
   frontend:
     build: ./frontend
     container_name: frontend_container
@@ -35,6 +31,29 @@ services:
     ports:
       - 4200:4200
     networks:
-      - app
+      - practica_net
+  mongo_express:
+    image: mongo-express:latest
+    container_name: adminMongo_container
+    restart: always
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongo_db
+    env_file:
+      - variables.env
+    networks:
+      - practica_net
+  loadBalancer:
+    image: nginx:latest
+    restart: always
+    container_name: loadBalancer_container
+    ports:
+      - "8080:80"
+    volumes:
+      - "./loadbalancer/nginx.conf:/etc/nginx/nginx.conf"
+    command: nginx -g "daemon off;"
+    networks:
+      - practica_net
 networks:
-  app:
+  practica_net:

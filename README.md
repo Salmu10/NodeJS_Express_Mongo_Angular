@@ -1,6 +1,6 @@
 <h1>DOCKER COMPOSE</h1>
 
-<p style="text-align: justify">Bienvenidos a SaleBack.<br>
+<p style="text-align: justify">Dockerización del proyecto de NodeJs/Angular13.<br>
   
 Un proyecto realizado por el alumno <a href="https://github.com/Salmu10">Salva Muñoz Úbeda</a> en el 1er curso de DAW en el <a href="https://portal.edu.gva.es/iestacio/">IES L'estació</a>.<br>
   
