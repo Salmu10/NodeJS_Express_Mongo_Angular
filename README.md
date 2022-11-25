@@ -61,6 +61,8 @@ imagen que utilizará, el puerto que usará y que arrancará después del conten
 
 <img src="images/loadbalancer.png">
 
+<hr>
+
 <h2>PUESTA EN MARCHA</h2>
 
 <p>Para arrancar y los contenedores, desde la carpeta del proyecto, ejecutaremos el comando "docker compose up --build".</p>
