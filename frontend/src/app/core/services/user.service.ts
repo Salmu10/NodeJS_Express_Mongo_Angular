@@ -8,7 +8,7 @@ import { map, distinctUntilChanged } from 'rxjs/operators';
 
 import { HttpClient, HttpParams } from '@angular/common/http';
 
-const URL = 'http://localhost:3000/api/user';
+const URL = 'http://localhost:8080/api/user';
 
 @Injectable({
   providedIn: 'root',

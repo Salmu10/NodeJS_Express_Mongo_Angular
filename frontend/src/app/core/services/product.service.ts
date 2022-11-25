@@ -5,7 +5,7 @@ import { Product, Filters } from '../models';
 import { ApiService } from './api.service';
 import { map } from 'rxjs/operators';
 
-const URL = 'http://localhost:3000/api/products';
+const URL = 'http://localhost:8080/api/products';
 
 @Injectable({
   providedIn: 'root'

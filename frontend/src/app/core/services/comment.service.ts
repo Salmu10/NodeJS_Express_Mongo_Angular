@@ -5,7 +5,7 @@ import { Comment } from '../models';
 import { ApiService } from './api.service';
 import { map } from 'rxjs/operators';
 
-const URL = 'http://localhost:3000/api/comments';
+const URL = 'http://localhost:8080/api/comments';
 
 @Injectable({
     providedIn: 'root'
