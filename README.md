@@ -61,6 +61,20 @@ imagen que utilizará, el puerto que usará y que arrancará después del conten
 
 <img src="images/loadbalancer.png">
 
+<h3>CONTENEDOR PROMETHEUS</h3>
+
+<p>En este contenedor podremos recoger métricas de la aplicación en tiempo real. Editaremos el server.js ed nuestro backend adecuandolo al contenedor de prometheus
+y crearemos el contenedor de este en el docker-compose.yml. Para ello, deberemos instalar la dependencia de prom-client en el backend.</p>
+
+<img src="images/prometheus.png">
+
+<h3>CONTENEDOR GRAFANA</h3>
+
+<p>Este último contenedor nos permitirá graficar todas las métricas creadas por el servicio Prometheus. Arrancará en el puerto 3500 y arrancará después del contenedor de prometheus.
+Además, tendremos que añadir las variables de entorno necesarias para su funcionamiento en el archivo .env creado previamente.</p>
+
+<img src="images/grafana.png">
+
 <hr>
 
 <h2>PUESTA EN MARCHA</h2>
