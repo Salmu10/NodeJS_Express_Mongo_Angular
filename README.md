@@ -69,8 +69,8 @@ imagen que utilizará, el puerto que usará y que arrancará después del conten
 
 <h3>Lista de URLs</h3>
 <ul>
-  <li>Proyecto General: <a href="http://localhost:4200">http://localhost:4200.</a></li>
-  <li>Servidor: <a href="http://localhost:3000/api/products">http://localhost:3000/api/products.</a></li>
+  <li>Frontend: <a href="http://localhost:4200">http://localhost:4200.</a></li>
+  <li>Backend: <a href="http://localhost:3000/api/products">http://localhost:3000/api/products.</a></li>
   <li>Panel de mongo-express: <a href="http://localhost:8081">http://localhost:8081.</a></li>
   <li>Frontend con loadbalancer activado: <a href="http://localhost:8080">http://localhost:8080.</a></li>
   <li>Backend con loadbalancer activado: <a href="http://localhost:8080/api/products">http://localhost:8080/api/products.</a></li>
