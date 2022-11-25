@@ -7,10 +7,19 @@ Un proyecto realizado por el alumno <a href="https://github.com/Salmu10">Salva M
 Este proyecto trata sobre una página web de venta de productos de segunda mano, al estilo wallapop,<br> sobre la cual se pueden realizar distintas funciones.</p>
 <hr>
   
-<h2>FUNCIONES</h2>
+<h2>CONTENEDOR MONGO</h2>
  
-<p>La web contiene un total de 4 secciones.<p>
-  
+<p style="text-align: justify">Para el contenedor de la base de datos, que en este caso es mongodb, primeramente, hacemos 
+una copia de la base de datos usada en el proyecto, para ello, usamos el comando "mongodump -d <database name> -o <target directory>"
+guardaremos esta carpeta de nuestra base de datos en una carpeta llamada "dump" que a su vez se encontrará en la carpeta de mongo.
+Además, crearemos un fichero .sh con el comando "mongorestore -d <database name> /dump" para insertar nuestra base de datos en el 
+contenedor de mongo.<p>
+
+<p style="text-align: justify">Solo nos quedará terminar de configurar el contenedor de mongo, agregando la red (practica_net), los puertos, etc.
+El resultado será parecido al siguiente:</p>
+
+<img src="images/mongo_1.png">
+
 <h3>Home</h3>
 <p>En la sección del Home, el usuario tiene su primera impresión de la web, el cual puede observar<br>
 un carrusel de las categorias que dispone la página, y filtar por ellas los productos.<br>
